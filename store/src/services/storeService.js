@@ -120,6 +120,18 @@ export const storeService = {
     }
   },
 
+  deleteOrder: (orderId) => {
+    try {
+      const orders = storeService.getOrders();
+      const updated = orders.filter((o) => o.id !== orderId);
+      localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(updated));
+      return updated;
+    } catch (e) {
+      console.error('Error deleting order:', e);
+      return [];
+    }
+  },
+
   // Products & Inventory
   getProducts: () => {
     try {
@@ -129,6 +141,22 @@ export const storeService = {
       return initialProducts;
     } catch {
       return initialProducts;
+    }
+  },
+
+  addProduct: (product) => {
+    try {
+      const products = storeService.getProducts();
+      const newProduct = {
+        ...product,
+        id: product.id || (product.name ? product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : `product-${Date.now()}`),
+      };
+      const updated = [...products, newProduct];
+      localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(updated));
+      return updated;
+    } catch (e) {
+      console.error('Error adding product:', e);
+      return [];
     }
   },
 
@@ -142,6 +170,32 @@ export const storeService = {
       return updated;
     } catch (e) {
       console.error('Error updating product price:', e);
+      return [];
+    }
+  },
+
+  updateProduct: (productId, updates) => {
+    try {
+      const products = storeService.getProducts();
+      const updated = products.map((p) =>
+        p.id === productId ? { ...p, ...updates } : p
+      );
+      localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(updated));
+      return updated;
+    } catch (e) {
+      console.error('Error updating product:', e);
+      return [];
+    }
+  },
+
+  deleteProduct: (productId) => {
+    try {
+      const products = storeService.getProducts();
+      const updated = products.filter((p) => p.id !== productId);
+      localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(updated));
+      return updated;
+    } catch (e) {
+      console.error('Error deleting product:', e);
       return [];
     }
   },
@@ -178,7 +232,116 @@ export const storeService = {
       console.error('Error saving config overrides:', e);
       return storeConfig;
     }
-  }
+  },
+
+  // Analytics — computed from orders & products
+  getAnalytics: () => {
+    try {
+      const orders = storeService.getOrders();
+
+      const totalRevenue = orders.reduce((sum, o) => sum + (o.totalGHS || 0), 0);
+      const totalOrders = orders.length;
+      const avgOrderValue = totalOrders > 0 ? Math.round((totalRevenue / totalOrders) * 100) / 100 : 0;
+
+      const pendingOrders = orders.filter((o) => o.status === 'Pending Dispatch').length;
+      const dispatchedOrders = orders.filter((o) => o.status === 'Dispatched').length;
+      const deliveredOrders = orders.filter((o) => o.status === 'Delivered').length;
+      const vipOrders = orders.filter((o) => o.isVip).length;
+
+      // Revenue by day (last 7 days)
+      const now = new Date();
+      const dayLabels = [];
+      const dayMap = {};
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date(now);
+        d.setDate(d.getDate() - i);
+        const key = d.toISOString().slice(0, 10); // YYYY-MM-DD
+        dayLabels.push(key);
+        dayMap[key] = 0;
+      }
+      orders.forEach((o) => {
+        if (o.date) {
+          const orderDay = new Date(o.date).toISOString().slice(0, 10);
+          if (dayMap[orderDay] !== undefined) {
+            dayMap[orderDay] += o.totalGHS || 0;
+          }
+        }
+      });
+      const revenueByDay = dayLabels.map((day) => ({ day, revenue: dayMap[day] }));
+
+      // Revenue by channel (paymentMethod)
+      const channelMap = {};
+      orders.forEach((o) => {
+        const channel = o.paymentMethod || 'Unknown';
+        if (!channelMap[channel]) channelMap[channel] = { revenue: 0, count: 0 };
+        channelMap[channel].revenue += o.totalGHS || 0;
+        channelMap[channel].count += 1;
+      });
+      const revenueByChannel = Object.entries(channelMap).map(([channel, data]) => ({
+        channel,
+        revenue: data.revenue,
+        count: data.count,
+      }));
+
+      // Top products (across all order items)
+      const productMap = {};
+      orders.forEach((o) => {
+        (o.items || []).forEach((item) => {
+          const name = item.name || 'Unknown';
+          if (!productMap[name]) productMap[name] = { revenue: 0, unitsSold: 0 };
+          const qty = item.qty || 1;
+          productMap[name].unitsSold += qty;
+          productMap[name].revenue += (item.price || 0) * qty;
+        });
+      });
+      const topProducts = Object.entries(productMap)
+        .map(([name, data]) => ({ name, revenue: data.revenue, unitsSold: data.unitsSold }))
+        .sort((a, b) => b.revenue - a.revenue);
+
+      // Orders by city
+      const cityMap = {};
+      orders.forEach((o) => {
+        const city = o.city || 'Unknown';
+        if (!cityMap[city]) cityMap[city] = { count: 0, revenue: 0 };
+        cityMap[city].count += 1;
+        cityMap[city].revenue += o.totalGHS || 0;
+      });
+      const ordersByCity = Object.entries(cityMap).map(([city, data]) => ({
+        city,
+        count: data.count,
+        revenue: data.revenue,
+      }));
+
+      return {
+        totalRevenue,
+        totalOrders,
+        avgOrderValue,
+        pendingOrders,
+        dispatchedOrders,
+        deliveredOrders,
+        vipOrders,
+        revenueByDay,
+        revenueByChannel,
+        topProducts,
+        ordersByCity,
+      };
+    } catch (e) {
+      console.error('Error computing analytics:', e);
+      return {
+        totalRevenue: 0,
+        totalOrders: 0,
+        avgOrderValue: 0,
+        pendingOrders: 0,
+        dispatchedOrders: 0,
+        deliveredOrders: 0,
+        vipOrders: 0,
+        revenueByDay: [],
+        revenueByChannel: [],
+        topProducts: [],
+        ordersByCity: [],
+      };
+    }
+  },
 };
 
 export default storeService;

@@ -19,6 +19,8 @@ import ConsultantBanner from './components/ConsultantBanner';
 import MobileBottomNav from './components/MobileBottomNav';
 import Footer from './components/Footer';
 import AdminDashboard from './components/admin/AdminDashboard';
+import DemoSwitcher from './components/DemoSwitcher';
+import storeService from './services/storeService';
 import { 
   Search, 
   X, 
@@ -34,7 +36,7 @@ import {
 const CURRENCIES = storeConfig.currencies.supported;
 
 export default function App() {
-  const [products] = useState(productsData);
+  const [products, setProducts] = useState(() => storeService.getProducts());
   const [activeCategory, setActiveCategory] = useState('All');
   const [activeSubCategory, setActiveSubCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -270,11 +272,24 @@ export default function App() {
   // ── Admin Command Center Gate ──
   if (isAdminOpen) {
     return (
-      <AdminDashboard
-        onExitAdmin={() => setIsAdminOpen(false)}
-        isDarkMode={isDarkMode}
-        setIsDarkMode={setIsDarkMode}
-      />
+      <div className="relative">
+        <AdminDashboard
+          onExitAdmin={() => {
+            setIsAdminOpen(false);
+            setProducts(storeService.getProducts());
+          }}
+          isDarkMode={isDarkMode}
+          setIsDarkMode={setIsDarkMode}
+          onProductsChange={(updatedList) => setProducts(updatedList)}
+        />
+        <DemoSwitcher
+          isAdmin={true}
+          onToggle={() => {
+            setIsAdminOpen(false);
+            setProducts(storeService.getProducts());
+          }}
+        />
+      </div>
     );
   }
 
@@ -616,6 +631,12 @@ export default function App() {
         onOpenRoutineBuilder={() => setIsRoutineBuilderOpen(true)}
         onScrollToTop={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         onScrollToCatalog={scrollToProducts}
+      />
+
+      {/* Demo Switcher (Bottom Left Floating Pill) */}
+      <DemoSwitcher
+        isAdmin={false}
+        onToggle={() => setIsAdminOpen(true)}
       />
     </div>
   );
