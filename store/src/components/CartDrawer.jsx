@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import storeService from '../services/storeService';
 import { 
   X, 
   Trash2, 
@@ -83,6 +84,27 @@ export default function CartDrawer({
   };
 
   const handleWhatsAppDispatch = () => {
+    const orderRef = 'TXN-WA-' + Math.floor(100000 + Math.random() * 900000);
+    storeService.addOrder({
+      id: orderRef,
+      date: new Date().toISOString(),
+      customer: formData.name || 'WhatsApp Customer',
+      phone: formData.phone || consultantPhone,
+      city: formData.city,
+      address: formData.address || '',
+      paymentMethod: 'WhatsApp Dispatch',
+      items: cartItems.map((item) => ({
+        name: item.name,
+        code: item.code,
+        qty: item.qty,
+        price: isVipMember ? Math.round(item.priceGHS * 0.8) : item.priceGHS,
+        variant: item.selectedVariant || null
+      })),
+      totalGHS: effectiveTotalGHS,
+      isVip: isVipMember,
+      consultantName,
+      status: 'Pending Dispatch'
+    });
     const waUrl = `https://wa.me/${consultantPhone}?text=${generateWhatsAppMessage()}`;
     window.open(waUrl, '_blank');
   };
@@ -95,6 +117,31 @@ export default function CartDrawer({
       return;
     }
 
+    const orderRef = formData.paymentMethod === 'momo'
+      ? 'TXN-MOMO-' + Math.floor(100000 + Math.random() * 900000)
+      : 'TXN-PAYSTACK-' + Math.floor(100000 + Math.random() * 900000);
+
+    storeService.addOrder({
+      id: orderRef,
+      date: new Date().toISOString(),
+      customer: formData.name,
+      phone: formData.phone,
+      city: formData.city,
+      address: formData.address || '',
+      paymentMethod: formData.paymentMethod === 'momo' ? formData.momoNetwork : 'Paystack Card',
+      items: cartItems.map((item) => ({
+        name: item.name,
+        code: item.code,
+        qty: item.qty,
+        price: isVipMember ? Math.round(item.priceGHS * 0.8) : item.priceGHS,
+        variant: item.selectedVariant || null
+      })),
+      totalGHS: effectiveTotalGHS,
+      isVip: isVipMember,
+      consultantName,
+      status: 'Pending Dispatch'
+    });
+
     if (formData.paymentMethod === 'momo') {
       setIsProcessingMoMo(true);
       setMomoCountdown(5);
@@ -104,7 +151,6 @@ export default function CartDrawer({
           if (prev <= 1) {
             clearInterval(timer);
             setIsProcessingMoMo(false);
-            const orderRef = 'TXN-MOMO-' + Math.floor(100000 + Math.random() * 900000);
             setConfirmedOrderId(orderRef);
             setOrderConfirmed(true);
             return 0;
@@ -113,7 +159,6 @@ export default function CartDrawer({
         });
       }, 1000);
     } else {
-      const orderRef = 'TXN-PAYSTACK-' + Math.floor(100000 + Math.random() * 900000);
       setConfirmedOrderId(orderRef);
       setOrderConfirmed(true);
     }

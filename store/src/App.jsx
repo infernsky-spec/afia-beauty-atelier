@@ -18,6 +18,7 @@ import VoiceConciergeWidget from './components/VoiceConciergeWidget';
 import ConsultantBanner from './components/ConsultantBanner';
 import MobileBottomNav from './components/MobileBottomNav';
 import Footer from './components/Footer';
+import AdminDashboard from './components/admin/AdminDashboard';
 import { 
   Search, 
   X, 
@@ -41,6 +42,14 @@ export default function App() {
   const [pageFilter, setPageFilter] = useState(null);
   const [currency, setCurrency] = useState(storeConfig.currencies.default || 'GHS');
   const [isVipMember, setIsVipMember] = useState(false);
+  const [isAdminOpen, setIsAdminOpen] = useState(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('admin') === 'true' || params.get('mode') === 'admin';
+    } catch {
+      return false;
+    }
+  });
 
   // Active Consultant State (Supports Multi-Tenant Affiliate links)
   const [consultant, setConsultant] = useState(() => {
@@ -258,6 +267,17 @@ export default function App() {
     }
   };
 
+  // ── Admin Command Center Gate ──
+  if (isAdminOpen) {
+    return (
+      <AdminDashboard
+        onExitAdmin={() => setIsAdminOpen(false)}
+        isDarkMode={isDarkMode}
+        setIsDarkMode={setIsDarkMode}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF6F0] dark:bg-[#000000] text-[#1E1917] dark:text-zinc-100 font-sans transition-colors duration-300 pb-20 md:pb-0 relative">
       {/* Top Navbar */}
@@ -322,6 +342,7 @@ export default function App() {
         onOpenCatalogue={() => setIsCatalogueOpen(true)}
         onOpenSkinDiagnostic={() => setIsSkinDiagnosticOpen(true)}
         onOpenScentFinder={() => setIsScentFinderOpen(true)}
+        onOpenAdmin={() => setIsAdminOpen(true)}
       />
 
       {/* ✨ 3D Interactive Masterpiece Carousel */}
@@ -459,6 +480,7 @@ export default function App() {
         onOpenCatalogue={() => setIsCatalogueOpen(true)}
         onOpenSkinDiagnostic={() => setIsSkinDiagnosticOpen(true)}
         onOpenScentFinder={() => setIsScentFinderOpen(true)}
+        onOpenAdmin={() => setIsAdminOpen(true)}
       />
 
       {/* Modals */}

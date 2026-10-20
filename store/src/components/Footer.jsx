@@ -6,9 +6,23 @@ export default function Footer({
   onSelectCategory, 
   onOpenCatalogue,
   onOpenSkinDiagnostic,
-  onOpenScentFinder
+  onOpenScentFinder,
+  onOpenAdmin
 }) {
   const { branding, contact } = storeConfig;
+  const [adminTapCount, setAdminTapCount] = React.useState(0);
+
+  const handleAdminTap = () => {
+    const next = adminTapCount + 1;
+    if (next >= 5 && onOpenAdmin) {
+      onOpenAdmin();
+      setAdminTapCount(0);
+    } else {
+      setAdminTapCount(next);
+      // Reset after 3 seconds of inactivity
+      setTimeout(() => setAdminTapCount(0), 3000);
+    }
+  };
 
   return (
     <footer className="bg-[#1A1615] dark:bg-[#000000] text-[#EADBCE] dark:text-zinc-400 pt-16 pb-10 border-t border-[#3D3431] dark:border-white/10 transition-colors duration-300">
@@ -144,10 +158,16 @@ export default function Footer({
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8C7B72] dark:text-zinc-500">
           <div>
-            © 2026 Afia Beauty Atelier • Authorized Independent Oriflame Brand Showcase.
+            <span
+              onClick={handleAdminTap}
+              className="cursor-default select-none"
+              title=""
+            >
+              © 2026 {branding.name} • Powered by White-Label Commerce Engine.
+            </span>
           </div>
           <div className="flex items-center gap-1">
-            <span>Crafted for Swedish Beauty Lovers in West Africa</span>
+            <span>Built for independent entrepreneurs</span>
             <Heart className="w-3.5 h-3.5 text-[#DEB573] fill-current" />
           </div>
         </div>
