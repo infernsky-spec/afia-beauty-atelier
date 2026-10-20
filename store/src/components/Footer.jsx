@@ -1,4 +1,5 @@
 import React from 'react';
+import storeConfig from '../config/store.config';
 import { MapPin, Mail, Phone, ShieldCheck, Heart } from 'lucide-react';
 
 export default function Footer({ 
@@ -7,6 +8,8 @@ export default function Footer({
   onOpenSkinDiagnostic,
   onOpenScentFinder
 }) {
+  const { branding, contact } = storeConfig;
+
   return (
     <footer className="bg-[#1A1615] dark:bg-[#000000] text-[#EADBCE] dark:text-zinc-400 pt-16 pb-10 border-t border-[#3D3431] dark:border-white/10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -16,19 +19,18 @@ export default function Footer({
           <div className="space-y-4">
             <div className="flex flex-col">
               <span className="font-serif text-3xl font-extrabold tracking-wide text-white">
-                AFIA<span className="text-[#DEB573]">.</span>BEAUTY
+                {branding.namePrefix}<span className="text-[#DEB573]">{branding.nameSuffix}</span>
               </span>
               <span className="text-[10px] uppercase tracking-[0.25em] text-[#DEB573] font-semibold">
-                Official Oriflame Independent Atelier
+                {branding.tagline}
               </span>
             </div>
             <p className="text-xs text-[#A8988E] dark:text-zinc-400 leading-relaxed font-light">
-              Curating the finest Swedish beauty, bio-activating Novage+ skincare, 
-              French Haute Parfumerie in co-creation with Givaudan, and clinical wellness from the Q4 2026 E-Catalogue.
+              {branding.originStory}
             </p>
             <div className="flex items-center gap-2 text-xs text-[#DEB573]">
               <ShieldCheck className="w-4 h-4" />
-              <span>100% Genuine Certified Swedish Formulations</span>
+              <span>100% Genuine Certified Formulations</span>
             </div>
           </div>
 
@@ -84,27 +86,25 @@ export default function Footer({
           {/* Regional Hubs */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-widest text-white">
-              Regional Operations
+              Location & Operations
             </h4>
             <ul className="space-y-3 text-xs text-[#A8988E] dark:text-zinc-400">
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#DEB573] shrink-0 mt-0.5" />
                 <span>
-                  Oriflame Cosmetics Nigeria Ltd.<br />
-                  43 Adeniyi Jones Avenue, Ikeja, Lagos
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#DEB573] shrink-0 mt-0.5" />
-                <span>
-                  Ghana Regional Consultant Network<br />
-                  Accra, Tema & Kumasi Metropolitan Hubs
+                  {contact.location}
                 </span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#DEB573] shrink-0" />
-                <a href="mailto:CustomerserviceNg@oriflame.com" className="hover:text-white transition-colors">
-                  CustomerserviceNg@oriflame.com
+                <a href={`mailto:${contact.email}`} className="hover:text-white transition-colors">
+                  {contact.email}
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone className="w-4 h-4 text-[#DEB573] shrink-0" />
+                <a href={`tel:${contact.phone}`} className="hover:text-white transition-colors">
+                  {contact.formattedPhone}
                 </a>
               </li>
             </ul>
@@ -113,13 +113,13 @@ export default function Footer({
           {/* Instant Ordering & Support */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-widest text-white">
-              Instant Ordering
+              Direct Inquiries
             </h4>
             <p className="text-xs text-[#A8988E] dark:text-zinc-400">
-              Have questions about your skin type, shade matching, or want to place bulk orders?
+              Have questions about sizing, specifications, or need personalized recommendations?
             </p>
             <a
-              href="https://wa.me/233240000000?text=Hello%20Afia!%20I%20have%20an%20inquiry%20about%20the%20Oriflame%20Catalogue."
+              href={`https://wa.me/${contact.phone}?text=${encodeURIComponent(contact.whatsappGreeting)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#25D366] text-white text-xs font-bold hover:bg-[#20BD5A] transition-colors shadow-md"
@@ -127,14 +127,16 @@ export default function Footer({
               <Phone className="w-3.5 h-3.5" />
               <span>Direct WhatsApp Chat</span>
             </a>
-            <div>
-              <button
-                onClick={onOpenCatalogue}
-                className="text-xs text-[#DEB573] hover:underline flex items-center gap-1 mt-2 cursor-pointer"
-              >
-                <span>Preview 40-Page Flipbook PDF</span>
-              </button>
-            </div>
+            {storeConfig.features.enableCatalogueModal && (
+              <div>
+                <button
+                  onClick={onOpenCatalogue}
+                  className="text-xs text-[#DEB573] hover:underline flex items-center gap-1 mt-2 cursor-pointer"
+                >
+                  <span>Preview {branding.catalogPagesCount}-Page Flipbook PDF</span>
+                </button>
+              </div>
+            )}
           </div>
 
         </div>

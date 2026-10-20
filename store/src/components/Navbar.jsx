@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import storeConfig from '../config/store.config';
 import { 
   ShoppingBag, 
   Search, 
@@ -46,58 +47,64 @@ export default function Navbar({
           <div className="flex items-center gap-2.5">
             <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-bold bg-[#DEB573] text-[#1A1615] shadow-xs">
               <Sparkles className="w-3 h-3 text-[#1A1615]" />
-              <span>Q4 2026 E-CATALOGUE</span>
+              <span>{storeConfig.branding.badge}</span>
             </span>
             <span className="hidden sm:inline text-xs text-[#EADBCE] dark:text-zinc-400">
-              Swedish Science & Haute Parfumerie (Givaudan Co-Lab)
+              {storeConfig.branding.shortDescription}
             </span>
           </div>
 
           <div className="flex items-center gap-3 text-xs">
             {/* Consultant Affiliate Link Button */}
-            <button
-              onClick={onOpenAffiliateModal}
-              className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-[#FAF6F0] transition-all cursor-pointer shadow-xs"
-              title="Change Consultant or Generate Personal Affiliate Link"
-            >
-              <Share2 className="w-3 h-3 text-[#DEB573]" />
-              <span className="text-[11px] font-semibold truncate max-w-[120px] sm:max-w-none">
-                Consultant: {consultantName}
-              </span>
-            </button>
+            {storeConfig.features.enableAffiliateReferrals && (
+              <button
+                onClick={onOpenAffiliateModal}
+                className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-[#FAF6F0] transition-all cursor-pointer shadow-xs"
+                title="Change Consultant or Generate Personal Affiliate Link"
+              >
+                <Share2 className="w-3 h-3 text-[#DEB573]" />
+                <span className="text-[11px] font-semibold truncate max-w-[120px] sm:max-w-none">
+                  Partner: {consultantName}
+                </span>
+              </button>
+            )}
 
             {/* Dark / Light Mode Switcher */}
-            <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-[#FAF6F0] transition-all cursor-pointer shadow-xs"
-              aria-label="Toggle dark mode"
-              title="Toggle Pure Black theme"
-            >
-              {isDarkMode ? (
-                <>
-                  <Sun className="w-3.5 h-3.5 text-[#DEB573]" />
-                  <span className="text-[11px] font-semibold">Light</span>
-                </>
-              ) : (
-                <>
-                  <Moon className="w-3.5 h-3.5 text-[#DEB573]" />
-                  <span className="text-[11px] font-semibold">Pure Black</span>
-                </>
-              )}
-            </button>
+            {storeConfig.features.enablePureBlackDarkMode && (
+              <button
+                onClick={() => setIsDarkMode(!isDarkMode)}
+                className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-[#FAF6F0] transition-all cursor-pointer shadow-xs"
+                aria-label="Toggle dark mode"
+                title="Toggle Pure Black theme"
+              >
+                {isDarkMode ? (
+                  <>
+                    <Sun className="w-3.5 h-3.5 text-[#DEB573]" />
+                    <span className="text-[11px] font-semibold">Light</span>
+                  </>
+                ) : (
+                  <>
+                    <Moon className="w-3.5 h-3.5 text-[#DEB573]" />
+                    <span className="text-[11px] font-semibold">Pure Black</span>
+                  </>
+                )}
+              </button>
+            )}
 
             {/* VIP Wholesale Rate Switcher */}
-            <button
-              onClick={() => setIsVipMember(!isVipMember)}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer shadow-xs ${
-                isVipMember
-                  ? 'bg-gradient-to-r from-[#DEB573] to-[#C48B3B] text-[#1A1615]'
-                  : 'bg-white/10 hover:bg-white/20 text-[#FAF6F0] border border-white/20'
-              }`}
-            >
-              <UserCheck className="w-3.5 h-3.5" />
-              <span>{isVipMember ? 'VIP -20% ACTIVE' : 'VIP WHOLESALE'}</span>
-            </button>
+            {storeConfig.features.enableVipWholesale && (
+              <button
+                onClick={() => setIsVipMember(!isVipMember)}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer shadow-xs ${
+                  isVipMember
+                    ? 'bg-gradient-to-r from-[#DEB573] to-[#C48B3B] text-[#1A1615]'
+                    : 'bg-white/10 hover:bg-white/20 text-[#FAF6F0] border border-white/20'
+                }`}
+              >
+                <UserCheck className="w-3.5 h-3.5" />
+                <span>{isVipMember ? `${storeConfig.wholesale.badgeText} ACTIVE` : 'VIP WHOLESALE'}</span>
+              </button>
+            )}
 
             {/* Currency Selector */}
             <div className="flex items-center gap-1">
@@ -125,60 +132,66 @@ export default function Navbar({
         <div className="flex items-center gap-3">
           <a href="#" className="flex flex-col group">
             <span className="font-serif text-2xl sm:text-3xl font-extrabold tracking-wide text-[#1A1615] dark:text-white transition-colors">
-              AFIA<span className="text-[#C48B3B]">.</span>BEAUTY
+              {storeConfig.branding.namePrefix}
+              <span className="text-[#C48B3B]">{storeConfig.branding.nameSuffix}</span>
             </span>
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#8C7B72] dark:text-[#DEB573] font-semibold -mt-1">
-              Oriflame Independent Atelier
+              {storeConfig.branding.tagline}
             </span>
           </a>
         </div>
 
         {/* Feature Triggers (Desktop) */}
         <div className="hidden xl:flex items-center gap-2">
-          {/* AR Virtual Try-On */}
-          <button
-            onClick={onOpenVirtualTryOn}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FAF6F0] dark:bg-zinc-900 hover:bg-[#FCEAE4] dark:hover:bg-zinc-800 text-[#6E5D53] dark:text-zinc-200 text-xs font-bold border border-[#EADBCE] dark:border-zinc-800 transition-all cursor-pointer shadow-xs"
-          >
-            <Camera className="w-3.5 h-3.5 text-[#C48B3B]" />
-            <span>Virtual Try-On</span>
-          </button>
+          {storeConfig.features.enableVirtualTryOn && (
+            <button
+              onClick={onOpenVirtualTryOn}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FAF6F0] dark:bg-zinc-900 hover:bg-[#FCEAE4] dark:hover:bg-zinc-800 text-[#6E5D53] dark:text-zinc-200 text-xs font-bold border border-[#EADBCE] dark:border-zinc-800 transition-all cursor-pointer shadow-xs"
+            >
+              <Camera className="w-3.5 h-3.5 text-[#C48B3B]" />
+              <span>Virtual Try-On</span>
+            </button>
+          )}
 
-          {/* Routine Builder */}
-          <button
-            onClick={onOpenRoutineBuilder}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FAF6F0] dark:bg-zinc-900 hover:bg-[#FCEAE4] dark:hover:bg-zinc-800 text-[#6E5D53] dark:text-zinc-200 text-xs font-bold border border-[#EADBCE] dark:border-zinc-800 transition-all cursor-pointer shadow-xs"
-          >
-            <Layers className="w-3.5 h-3.5 text-[#C48B3B]" />
-            <span>Routine Builder (-15%)</span>
-          </button>
+          {storeConfig.features.enableRoutineBuilder && (
+            <button
+              onClick={onOpenRoutineBuilder}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FAF6F0] dark:bg-zinc-900 hover:bg-[#FCEAE4] dark:hover:bg-zinc-800 text-[#6E5D53] dark:text-zinc-200 text-xs font-bold border border-[#EADBCE] dark:border-zinc-800 transition-all cursor-pointer shadow-xs"
+            >
+              <Layers className="w-3.5 h-3.5 text-[#C48B3B]" />
+              <span>Routine (-{storeConfig.routineBuilder.discountPercent}%)</span>
+            </button>
+          )}
 
-          {/* Skin Diagnostic */}
-          <button
-            onClick={onOpenSkinDiagnostic}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FAF6F0] dark:bg-zinc-900 hover:bg-[#FCEAE4] dark:hover:bg-zinc-800 text-[#6E5D53] dark:text-zinc-200 text-xs font-bold border border-[#EADBCE] dark:border-zinc-800 transition-all cursor-pointer shadow-xs"
-          >
-            <Activity className="w-3.5 h-3.5 text-[#C48B3B]" />
-            <span>Skin Diagnostic</span>
-          </button>
+          {storeConfig.features.enableSkinDiagnostic && (
+            <button
+              onClick={onOpenSkinDiagnostic}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FAF6F0] dark:bg-zinc-900 hover:bg-[#FCEAE4] dark:hover:bg-zinc-800 text-[#6E5D53] dark:text-zinc-200 text-xs font-bold border border-[#EADBCE] dark:border-zinc-800 transition-all cursor-pointer shadow-xs"
+            >
+              <Activity className="w-3.5 h-3.5 text-[#C48B3B]" />
+              <span>Skin Diagnostic</span>
+            </button>
+          )}
 
-          {/* Scent Atelier */}
-          <button
-            onClick={onOpenScentFinder}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FAF6F0] dark:bg-zinc-900 hover:bg-[#FCEAE4] dark:hover:bg-zinc-800 text-[#6E5D53] dark:text-zinc-200 text-xs font-bold border border-[#EADBCE] dark:border-zinc-800 transition-all cursor-pointer shadow-xs"
-          >
-            <Compass className="w-3.5 h-3.5 text-[#C48B3B]" />
-            <span>Scent Atelier</span>
-          </button>
+          {storeConfig.features.enableScentFinder && (
+            <button
+              onClick={onOpenScentFinder}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FAF6F0] dark:bg-zinc-900 hover:bg-[#FCEAE4] dark:hover:bg-zinc-800 text-[#6E5D53] dark:text-zinc-200 text-xs font-bold border border-[#EADBCE] dark:border-zinc-800 transition-all cursor-pointer shadow-xs"
+            >
+              <Compass className="w-3.5 h-3.5 text-[#C48B3B]" />
+              <span>Scent Atelier</span>
+            </button>
+          )}
 
-          {/* Digital E-Catalogue */}
-          <button
-            onClick={onOpenCatalogue}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#DEB573] text-[#9B681C] dark:text-[#DEB573] bg-[#FFFDF9] dark:bg-zinc-900 hover:bg-[#F5DFC2]/50 text-xs font-bold transition-all cursor-pointer shadow-xs"
-          >
-            <BookOpen className="w-3.5 h-3.5 text-[#C48B3B]" />
-            <span>Flipbook</span>
-          </button>
+          {storeConfig.features.enableCatalogueModal && (
+            <button
+              onClick={onOpenCatalogue}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#DEB573] text-[#9B681C] dark:text-[#DEB573] bg-[#FFFDF9] dark:bg-zinc-900 hover:bg-[#F5DFC2]/50 text-xs font-bold transition-all cursor-pointer shadow-xs"
+            >
+              <BookOpen className="w-3.5 h-3.5 text-[#C48B3B]" />
+              <span>Flipbook</span>
+            </button>
+          )}
         </div>
 
         {/* Search Bar - Desktop */}
@@ -241,41 +254,51 @@ export default function Navbar({
 
       {/* Mobile Feature Quick Pill Bar */}
       <div className="xl:hidden flex items-center gap-2 px-4 py-2 overflow-x-auto no-scrollbar border-t border-[#EADBCE]/60 dark:border-zinc-800/60 bg-[#FAF6F0] dark:bg-[#000000] text-xs">
-        <button
-          onClick={onOpenVirtualTryOn}
-          className="flex items-center gap-1 px-3 py-1 rounded-full bg-white dark:bg-zinc-900 border border-[#EADBCE] dark:border-zinc-800 text-[#1A1615] dark:text-zinc-200 shrink-0 font-bold"
-        >
-          <Camera className="w-3 h-3 text-[#C48B3B]" />
-          <span>Virtual Try-On</span>
-        </button>
-        <button
-          onClick={onOpenRoutineBuilder}
-          className="flex items-center gap-1 px-3 py-1 rounded-full bg-white dark:bg-zinc-900 border border-[#EADBCE] dark:border-zinc-800 text-[#1A1615] dark:text-zinc-200 shrink-0 font-bold"
-        >
-          <Layers className="w-3 h-3 text-[#C48B3B]" />
-          <span>Routine (-15%)</span>
-        </button>
-        <button
-          onClick={onOpenSkinDiagnostic}
-          className="flex items-center gap-1 px-3 py-1 rounded-full bg-white dark:bg-zinc-900 border border-[#EADBCE] dark:border-zinc-800 text-[#1A1615] dark:text-zinc-200 shrink-0 font-bold"
-        >
-          <Activity className="w-3 h-3 text-[#C48B3B]" />
-          <span>Skin Test</span>
-        </button>
-        <button
-          onClick={onOpenScentFinder}
-          className="flex items-center gap-1 px-3 py-1 rounded-full bg-white dark:bg-zinc-900 border border-[#EADBCE] dark:border-zinc-800 text-[#1A1615] dark:text-zinc-200 shrink-0 font-bold"
-        >
-          <Compass className="w-3 h-3 text-[#C48B3B]" />
-          <span>Scent Atelier</span>
-        </button>
-        <button
-          onClick={onOpenCatalogue}
-          className="flex items-center gap-1 px-3 py-1 rounded-full bg-white dark:bg-zinc-900 border border-[#EADBCE] dark:border-zinc-800 text-[#1A1615] dark:text-zinc-200 shrink-0 font-bold"
-        >
-          <BookOpen className="w-3 h-3 text-[#C48B3B]" />
-          <span>Flipbook</span>
-        </button>
+        {storeConfig.features.enableVirtualTryOn && (
+          <button
+            onClick={onOpenVirtualTryOn}
+            className="flex items-center gap-1 px-3 py-1 rounded-full bg-white dark:bg-zinc-900 border border-[#EADBCE] dark:border-zinc-800 text-[#1A1615] dark:text-zinc-200 shrink-0 font-bold"
+          >
+            <Camera className="w-3 h-3 text-[#C48B3B]" />
+            <span>Virtual Try-On</span>
+          </button>
+        )}
+        {storeConfig.features.enableRoutineBuilder && (
+          <button
+            onClick={onOpenRoutineBuilder}
+            className="flex items-center gap-1 px-3 py-1 rounded-full bg-white dark:bg-zinc-900 border border-[#EADBCE] dark:border-zinc-800 text-[#1A1615] dark:text-zinc-200 shrink-0 font-bold"
+          >
+            <Layers className="w-3 h-3 text-[#C48B3B]" />
+            <span>Routine (-{storeConfig.routineBuilder.discountPercent}%)</span>
+          </button>
+        )}
+        {storeConfig.features.enableSkinDiagnostic && (
+          <button
+            onClick={onOpenSkinDiagnostic}
+            className="flex items-center gap-1 px-3 py-1 rounded-full bg-white dark:bg-zinc-900 border border-[#EADBCE] dark:border-zinc-800 text-[#1A1615] dark:text-zinc-200 shrink-0 font-bold"
+          >
+            <Activity className="w-3 h-3 text-[#C48B3B]" />
+            <span>Skin Test</span>
+          </button>
+        )}
+        {storeConfig.features.enableScentFinder && (
+          <button
+            onClick={onOpenScentFinder}
+            className="flex items-center gap-1 px-3 py-1 rounded-full bg-white dark:bg-zinc-900 border border-[#EADBCE] dark:border-zinc-800 text-[#1A1615] dark:text-zinc-200 shrink-0 font-bold"
+          >
+            <Compass className="w-3 h-3 text-[#C48B3B]" />
+            <span>Scent Atelier</span>
+          </button>
+        )}
+        {storeConfig.features.enableCatalogueModal && (
+          <button
+            onClick={onOpenCatalogue}
+            className="flex items-center gap-1 px-3 py-1 rounded-full bg-white dark:bg-zinc-900 border border-[#EADBCE] dark:border-zinc-800 text-[#1A1615] dark:text-zinc-200 shrink-0 font-bold"
+          >
+            <BookOpen className="w-3 h-3 text-[#C48B3B]" />
+            <span>Flipbook</span>
+          </button>
+        )}
       </div>
 
       {/* Mobile Search Expand */}

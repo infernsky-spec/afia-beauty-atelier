@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import storeConfig from '../config/store.config';
 import { 
   Play, 
   Pause, 
@@ -11,7 +12,12 @@ import {
   Headphones
 } from 'lucide-react';
 
-export default function VoiceConciergeWidget({ consultantPhone = '233240000000', consultantName = 'Afia Mensah' }) {
+export default function VoiceConciergeWidget({ consultantPhone, consultantName }) {
+  const activePhone = consultantPhone || storeConfig.contact.phone;
+  const activeName = consultantName || storeConfig.contact.ownerName;
+
+  if (storeConfig.features.enableVoiceConcierge === false) return null;
+
   const [isOpen, setIsOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -60,9 +66,9 @@ export default function VoiceConciergeWidget({ consultantPhone = '233240000000',
   }, []);
 
   const waVoiceText = encodeURIComponent(
-    `Hello ${consultantName}! I just listened to your voice message on your Oriflame Atelier. I would like a personalized beauty consultation / shade matching via voice note.`
+    `Hello ${activeName}! I just listened to your voice message on your store. I would like a personalized consultation via voice note.`
   );
-  const waUrl = `https://wa.me/${consultantPhone}?text=${waVoiceText}`;
+  const waUrl = `https://wa.me/${activePhone}?text=${waVoiceText}`;
 
   return (
     <div className="fixed bottom-20 md:bottom-6 left-4 sm:left-6 z-40">
@@ -78,7 +84,7 @@ export default function VoiceConciergeWidget({ consultantPhone = '233240000000',
             <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           </div>
           <span className="text-xs font-bold tracking-wide">
-            Afia's Voice Note
+            {activeName.split(' ')[0]}'s Voice Note
           </span>
         </button>
       )}
@@ -91,14 +97,14 @@ export default function VoiceConciergeWidget({ consultantPhone = '233240000000',
               <div className="relative">
                 <img
                   src="/catalog/page_11.jpg"
-                  alt={consultantName}
+                  alt={activeName}
                   className="w-10 h-10 rounded-full object-cover border-2 border-[#DEB573]"
                 />
                 <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-white" />
               </div>
               <div>
-                <h4 className="text-xs font-bold">{consultantName}</h4>
-                <p className="text-[10px] text-[#8C7B72] dark:text-zinc-400">Certified Oriflame Consultant</p>
+                <h4 className="text-xs font-bold">{activeName}</h4>
+                <p className="text-[10px] text-[#8C7B72] dark:text-zinc-400">{storeConfig.contact.ownerTitle}</p>
               </div>
             </div>
 
@@ -143,7 +149,7 @@ export default function VoiceConciergeWidget({ consultantPhone = '233240000000',
             </div>
 
             <p className="text-[11px] text-[#6E5D53] dark:text-zinc-300 italic leading-relaxed">
-              "Hi there! Welcome to our Q4 Swedish Atelier. Need shade matching or Novage+ advice? Send me a quick voice note!"
+              "{storeConfig.contact.voiceNoteGreeting}"
             </p>
           </div>
 

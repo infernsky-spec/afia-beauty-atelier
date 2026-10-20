@@ -1,4 +1,5 @@
 import React from 'react';
+import storeConfig from '../config/store.config';
 import { 
   Home, 
   ShoppingBag, 
@@ -38,24 +39,28 @@ export default function MobileBottomNav({
         </button>
 
         {/* AR Virtual Try-On */}
-        <button
-          onClick={onOpenVirtualTryOn}
-          className="flex flex-col items-center gap-1 text-[#6E5D53] dark:text-zinc-400 hover:text-[#1A1615] dark:hover:text-white transition-colors cursor-pointer p-1"
-        >
-          <div className="w-6 h-6 rounded-full bg-[#1A1615] dark:bg-[#DEB573] text-white dark:text-[#1A1615] flex items-center justify-center shadow-xs">
-            <Camera className="w-3.5 h-3.5" />
-          </div>
-          <span className="text-[10px] font-bold text-[#C48B3B] dark:text-[#DEB573]">AR Try-On</span>
-        </button>
+        {storeConfig.features.enableVirtualTryOn && (
+          <button
+            onClick={onOpenVirtualTryOn}
+            className="flex flex-col items-center gap-1 text-[#6E5D53] dark:text-zinc-400 hover:text-[#1A1615] dark:hover:text-white transition-colors cursor-pointer p-1"
+          >
+            <div className="w-6 h-6 rounded-full bg-[#1A1615] dark:bg-[#DEB573] text-white dark:text-[#1A1615] flex items-center justify-center shadow-xs">
+              <Camera className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-[10px] font-bold text-[#C48B3B] dark:text-[#DEB573]">AR Try-On</span>
+          </button>
+        )}
 
         {/* Routines (-15%) */}
-        <button
-          onClick={onOpenRoutineBuilder}
-          className="flex flex-col items-center gap-1 text-[#6E5D53] dark:text-zinc-400 hover:text-[#1A1615] dark:hover:text-white transition-colors cursor-pointer p-1"
-        >
-          <Layers className="w-5 h-5 text-[#8C7B72] dark:text-zinc-400" />
-          <span className="text-[10px] font-semibold">Vanity</span>
-        </button>
+        {storeConfig.features.enableRoutineBuilder && (
+          <button
+            onClick={onOpenRoutineBuilder}
+            className="flex flex-col items-center gap-1 text-[#6E5D53] dark:text-zinc-400 hover:text-[#1A1615] dark:hover:text-white transition-colors cursor-pointer p-1"
+          >
+            <Layers className="w-5 h-5 text-[#8C7B72] dark:text-zinc-400" />
+            <span className="text-[10px] font-semibold">Vanity</span>
+          </button>
+        )}
 
         {/* Shopping Bag */}
         <button

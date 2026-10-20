@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import storeConfig from '../config/store.config';
 import { 
   ChevronLeft, 
   ChevronRight, 
@@ -14,19 +15,14 @@ export default function ThreeDCarousel({
   onAddToCart,
   formatPrice
 }) {
-  const featuredIds = [
-    'top-scents-rose-mode',
-    'novage-restore-routine',
-    'giordani-gold-man',
-    'the-one-pump-plump-mascara',
-    'love-potion-body-cream',
-    'novage-intense-capsules',
-    'milk-honey-sugar-scrub'
-  ];
-
-  const carouselItems = featuredIds
+  const configuredIds = storeConfig.carousel?.featuredProductIds || [];
+  const selectedFromConfig = configuredIds
     .map((id) => products.find((p) => p.id === id))
     .filter(Boolean);
+
+  const carouselItems = selectedFromConfig.length >= 3 
+    ? selectedFromConfig 
+    : products.slice(0, 6);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -104,15 +100,15 @@ export default function ThreeDCarousel({
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-14 space-y-2 sm:space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#1A1615] dark:bg-zinc-900 border border-transparent dark:border-zinc-800 text-[#DEB573] text-[11px] sm:text-xs font-bold uppercase tracking-wider shadow-md">
             <Sparkles className="w-3.5 h-3.5 text-[#DEB573]" />
-            <span>Interactive 3D Gallery</span>
+            <span>{storeConfig.carousel?.badge || 'Featured Collection'}</span>
           </div>
 
           <h2 className="font-serif text-2xl sm:text-5xl font-medium text-[#1A1615] dark:text-white leading-tight tracking-tight">
-            Curated Icons & Haute Formulations
+            {storeConfig.carousel?.title || 'Curated Highlights'}
           </h2>
 
           <p className="text-xs sm:text-base text-[#6E5D53] dark:text-zinc-400 font-light leading-relaxed">
-            Swipe or rotate through the star highlights of the Q4 2026 E-Catalogue.
+            {storeConfig.carousel?.subtitle || 'Swipe or rotate through our star items.'}
           </p>
         </div>
 

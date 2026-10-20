@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import productsData from './data/products.json';
+import storeConfig from './config/store.config';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ThreeDCarousel from './components/ThreeDCarousel';
@@ -29,11 +30,7 @@ import {
   Sparkles
 } from 'lucide-react';
 
-const CURRENCIES = {
-  GHS: { symbol: 'GH₵', rate: 1.0, label: 'Ghana Cedi' },
-  NGN: { symbol: '₦', rate: 105.0, label: 'Nigerian Naira' },
-  USD: { symbol: '$', rate: 0.065, label: 'US Dollar' }
-};
+const CURRENCIES = storeConfig.currencies.supported;
 
 export default function App() {
   const [products] = useState(productsData);
@@ -42,7 +39,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('featured');
   const [pageFilter, setPageFilter] = useState(null);
-  const [currency, setCurrency] = useState('GHS');
+  const [currency, setCurrency] = useState(storeConfig.currencies.default || 'GHS');
   const [isVipMember, setIsVipMember] = useState(false);
 
   // Active Consultant State (Supports Multi-Tenant Affiliate links)
@@ -56,23 +53,23 @@ export default function App() {
 
       if (urlConsultant || urlPhone) {
         return {
-          name: urlConsultant || 'Afia Mensah',
-          phone: urlPhone ? urlPhone.replace(/[^0-9]/g, '') : '233240000000',
-          id: urlId || 'GH-2026-981'
+          name: urlConsultant || storeConfig.contact.ownerName,
+          phone: urlPhone ? urlPhone.replace(/[^0-9]/g, '') : storeConfig.contact.phone,
+          id: urlId || storeConfig.contact.partnerId
         };
       }
 
       const saved = localStorage.getItem('afia_consultant');
       return saved ? JSON.parse(saved) : {
-        name: 'Afia Mensah',
-        phone: '233240000000',
-        id: 'GH-2026-981'
+        name: storeConfig.contact.ownerName,
+        phone: storeConfig.contact.phone,
+        id: storeConfig.contact.partnerId
       };
     } catch {
       return {
-        name: 'Afia Mensah',
-        phone: '233240000000',
-        id: 'GH-2026-981'
+        name: storeConfig.contact.ownerName,
+        phone: storeConfig.contact.phone,
+        id: storeConfig.contact.partnerId
       };
     }
   });
@@ -91,7 +88,7 @@ export default function App() {
     try {
       const saved = localStorage.getItem('afia_theme');
       if (saved) return saved === 'dark';
-      return true; // Default to pure black theme
+      return storeConfig.branding.defaultTheme === 'dark';
     } catch {
       return true;
     }
@@ -289,12 +286,16 @@ export default function App() {
       />
 
       {/* Active Consultant Announcement Ribbon if customized */}
-      {consultant.name !== 'Afia Mensah' && (
+      {consultant.name !== storeConfig.contact.ownerName && (
         <div className="bg-[#1A1615] dark:bg-zinc-900 text-[#FAF6F0] px-4 py-1.5 text-center text-xs font-mono flex items-center justify-center gap-2 border-b border-[#DEB573]/30">
           <Share2 className="w-3.5 h-3.5 text-[#DEB573]" />
           <span>Shopping through Brand Partner: <strong>{consultant.name}</strong> (Orders route to +{consultant.phone})</span>
           <button 
-            onClick={() => handleUpdateConsultant({ name: 'Afia Mensah', phone: '233240000000', id: 'GH-2026-981' })}
+            onClick={() => handleUpdateConsultant({ 
+              name: storeConfig.contact.ownerName, 
+              phone: storeConfig.contact.phone, 
+              id: storeConfig.contact.partnerId 
+            })}
             className="underline text-[#DEB573] hover:text-white ml-2 text-[11px] cursor-pointer"
           >
             Reset
@@ -303,10 +304,10 @@ export default function App() {
       )}
 
       {/* VIP Wholesale Active Banner */}
-      {isVipMember && (
+      {isVipMember && storeConfig.features.enableVipWholesale && (
         <div className="bg-gradient-to-r from-[#DEB573] via-[#C48B3B] to-[#DEB573] text-[#1A1615] px-4 py-2 text-center text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm">
           <UserCheck className="w-4 h-4 text-[#1A1615]" />
-          <span>VIP Wholesale Rates Active: 20% Discount Automatically Applied to Every Product</span>
+          <span>{storeConfig.wholesale.bannerText}</span>
         </div>
       )}
 
@@ -324,12 +325,14 @@ export default function App() {
       />
 
       {/* ✨ 3D Interactive Masterpiece Carousel */}
-      <ThreeDCarousel
-        products={products}
-        onQuickView={setSelectedProduct}
-        onAddToCart={handleAddToCart}
-        formatPrice={formatPrice}
-      />
+      {storeConfig.features.enable3DCarousel && (
+        <ThreeDCarousel
+          products={products}
+          onQuickView={setSelectedProduct}
+          onAddToCart={handleAddToCart}
+          formatPrice={formatPrice}
+        />
+      )}
 
       {/* Category Navigation Bar */}
       <div id="products-grid">
@@ -485,73 +488,89 @@ export default function App() {
         consultantName={consultant.name}
       />
 
-      <CatalogueModal
-        isOpen={isCatalogueOpen}
-        onClose={() => setIsCatalogueOpen(false)}
-        onFilterByPage={(pageNum) => {
-          setPageFilter(pageNum);
-          setActiveCategory('All');
-          setActiveSubCategory('All');
-          scrollToProducts();
-        }}
-      />
+      {storeConfig.features.enableCatalogueModal && (
+        <CatalogueModal
+          isOpen={isCatalogueOpen}
+          onClose={() => setIsCatalogueOpen(false)}
+          onFilterByPage={(pageNum) => {
+            setPageFilter(pageNum);
+            setActiveCategory('All');
+            setActiveSubCategory('All');
+            scrollToProducts();
+          }}
+        />
+      )}
 
-      <SkinDiagnosticModal
-        isOpen={isSkinDiagnosticOpen}
-        onClose={() => setIsSkinDiagnosticOpen(false)}
-        onAddToCart={handleAddToCart}
-        products={products}
-        formatPrice={formatPrice}
-      />
+      {storeConfig.features.enableSkinDiagnostic && (
+        <SkinDiagnosticModal
+          isOpen={isSkinDiagnosticOpen}
+          onClose={() => setIsSkinDiagnosticOpen(false)}
+          onAddToCart={handleAddToCart}
+          products={products}
+          formatPrice={formatPrice}
+        />
+      )}
 
-      <ScentFinderModal
-        isOpen={isScentFinderOpen}
-        onClose={() => setIsScentFinderOpen(false)}
-        onAddToCart={handleAddToCart}
-        products={products}
-        formatPrice={formatPrice}
-      />
+      {storeConfig.features.enableScentFinder && (
+        <ScentFinderModal
+          isOpen={isScentFinderOpen}
+          onClose={() => setIsScentFinderOpen(false)}
+          onAddToCart={handleAddToCart}
+          products={products}
+          formatPrice={formatPrice}
+        />
+      )}
 
-      <VirtualTryOnModal
-        isOpen={isVirtualTryOnOpen}
-        onClose={() => setIsVirtualTryOnOpen(false)}
-        onAddToCart={handleAddToCart}
-        formatPrice={formatPrice}
-      />
+      {storeConfig.features.enableVirtualTryOn && (
+        <VirtualTryOnModal
+          isOpen={isVirtualTryOnOpen}
+          onClose={() => setIsVirtualTryOnOpen(false)}
+          onAddToCart={handleAddToCart}
+          formatPrice={formatPrice}
+        />
+      )}
 
-      <RoutineBuilderModal
-        isOpen={isRoutineBuilderOpen}
-        onClose={() => setIsRoutineBuilderOpen(false)}
-        onAddToCart={handleAddToCart}
-        formatPrice={formatPrice}
-      />
+      {storeConfig.features.enableRoutineBuilder && (
+        <RoutineBuilderModal
+          isOpen={isRoutineBuilderOpen}
+          onClose={() => setIsRoutineBuilderOpen(false)}
+          onAddToCart={handleAddToCart}
+          formatPrice={formatPrice}
+        />
+      )}
 
-      <ConsultantAffiliateModal
-        isOpen={isAffiliateModalOpen}
-        onClose={() => setIsAffiliateModalOpen(false)}
-        activeConsultant={consultant}
-        onUpdateConsultant={handleUpdateConsultant}
-      />
+      {storeConfig.features.enableAffiliateReferrals && (
+        <ConsultantAffiliateModal
+          isOpen={isAffiliateModalOpen}
+          onClose={() => setIsAffiliateModalOpen(false)}
+          activeConsultant={consultant}
+          onUpdateConsultant={handleUpdateConsultant}
+        />
+      )}
 
       {/* Floating Audio Voice Note Hotline Widget */}
-      <VoiceConciergeWidget
-        consultantPhone={consultant.phone}
-        consultantName={consultant.name}
-      />
+      {storeConfig.features.enableVoiceConcierge && (
+        <VoiceConciergeWidget
+          consultantPhone={consultant.phone}
+          consultantName={consultant.name}
+        />
+      )}
 
       {/* Floating WhatsApp Quick Action Button */}
-      <a
-        href={`https://wa.me/${consultant.phone}?text=Hello%20${encodeURIComponent(consultant.name)}!%20I'm%20browsing%20your%20Oriflame%20Catalogue%20website%20and%20need%20assistance.`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-20 md:bottom-6 right-4 sm:right-6 z-40 bg-[#25D366] hover:bg-[#20BD5A] text-white p-3.5 sm:px-5 sm:py-3.5 rounded-full shadow-2xl flex items-center gap-2 hover:scale-105 transition-all duration-200 cursor-pointer group"
-        aria-label="Chat on WhatsApp with Consultant"
-      >
-        <MessageCircle className="w-5 h-5 fill-current" />
-        <span className="hidden sm:inline text-xs font-bold tracking-wide">
-          Chat with {consultant.name.split(' ')[0]}
-        </span>
-      </a>
+      {storeConfig.features.enableWhatsAppCheckout && (
+        <a
+          href={`https://wa.me/${consultant.phone}?text=Hello%20${encodeURIComponent(consultant.name)}!%20${encodeURIComponent(storeConfig.contact.whatsappGreeting)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-20 md:bottom-6 right-4 sm:right-6 z-40 bg-[#25D366] hover:bg-[#20BD5A] text-white p-3.5 sm:px-5 sm:py-3.5 rounded-full shadow-2xl flex items-center gap-2 hover:scale-105 transition-all duration-200 cursor-pointer group"
+          aria-label="Chat on WhatsApp with Consultant"
+        >
+          <MessageCircle className="w-5 h-5 fill-current" />
+          <span className="hidden sm:inline text-xs font-bold tracking-wide">
+            Chat with {consultant.name.split(' ')[0]}
+          </span>
+        </a>
+      )}
 
       {/* Toast Notification Pill */}
       {toastMessage && (
