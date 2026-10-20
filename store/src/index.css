@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* Custom transitions and theme defaults */
+html {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Glassmorphism Luxury Panels */
+.glass-panel-luxury {
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(222, 181, 115, 0.28);
+  box-shadow: 0 10px 30px -10px rgba(196, 139, 59, 0.12);
+}
+
+.dark .glass-panel-luxury {
+  background: rgba(10, 10, 10, 0.90);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(222, 181, 115, 0.2);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.85);
+}
+
+/* Modern Rounded Beauty Card */
+.beauty-card {
+  border-radius: 1.5rem;
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.beauty-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #DEB573;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C48B3B;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #8C714D;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #DEB573;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

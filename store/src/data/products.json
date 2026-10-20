@@ -1,0 +1,792 @@
+[
+  {
+    "id": "top-scents-rose-mode",
+    "code": "47722",
+    "name": "Top Scents Rose Mode Eau de Parfum",
+    "subtitle": "Niche Perfume Collection in co-lab with Givaudan",
+    "category": "Fragrance",
+    "subCategory": "Women",
+    "priceGHS": 650,
+    "originalPriceGHS": 780,
+    "volume": "50 ml",
+    "page": 3,
+    "image": "/catalog/page_3.jpg",
+    "badge": "Niche Luxury",
+    "rating": 4.9,
+    "reviewsCount": 58,
+    "description": "An artisanal niche fragrance prioritizing artistic vision and rare accords. Co-created with master perfumers at Givaudan, Rose Mode explores reimagined petals and radiant warmth for an unforgettable signature.",
+    "notes": [
+      "Damask Rose",
+      "Pink Peppercorn",
+      "White Amber",
+      "Cashmere Woods"
+    ],
+    "benefits": [
+      "Artisanal niche formulation",
+      "Long-lasting 10+ hour sillage",
+      "Exclusive collaboration with Givaudan"
+    ],
+    "olfactoryPyramid": {
+      "top": [
+        "Pink Peppercorn",
+        "Dewy Lychee",
+        "Calabrian Bergamot"
+      ],
+      "heart": [
+        "Damask Rose Absolue",
+        "White Peony",
+        "Wild Violet"
+      ],
+      "base": [
+        "Cashmere Wood",
+        "White Amber",
+        "Crisp White Musk"
+      ]
+    },
+    "perfumer": "Master Perfumer Collaboration, Givaudan Paris",
+    "sillage": "Enveloping",
+    "longevity": "10–12 Hours"
+  },
+  {
+    "id": "top-scents-neon",
+    "code": "47723",
+    "name": "Top Scents Neon Glow Eau de Parfum",
+    "subtitle": "Niche Perfume Collection",
+    "category": "Fragrance",
+    "subCategory": "Unisex",
+    "priceGHS": 650,
+    "originalPriceGHS": 780,
+    "volume": "50 ml",
+    "page": 3,
+    "image": "/catalog/page_3.jpg",
+    "badge": "New Arrival",
+    "rating": 4.8,
+    "reviewsCount": 42,
+    "description": "Electrifying, luminous, and boundary-pushing. A modern electric citrus and cedar composition that breaks mass-market conventions.",
+    "notes": [
+      "Yuzu Citrus",
+      "Cardamom",
+      "Violet Leaf",
+      "Smoky Cedarwood"
+    ],
+    "benefits": [
+      "High-concentration niche perfume",
+      "Unisex bespoke profile",
+      "Day-to-night versatility"
+    ],
+    "olfactoryPyramid": {
+      "top": [
+        "Electric Yuzu",
+        "Frozen Mandarin",
+        "Cardamom Essence"
+      ],
+      "heart": [
+        "Crushed Violet Leaf",
+        "Nutmeg",
+        "Solar Hedione"
+      ],
+      "base": [
+        "Smoky Cedarwood",
+        "Haitian Vetiver",
+        "Grey Amber"
+      ]
+    },
+    "perfumer": "Givaudan Niche Creative Atelier",
+    "sillage": "Moderate & Radiant",
+    "longevity": "9–11 Hours"
+  },
+  {
+    "id": "love-potion-body-cream",
+    "code": "47013",
+    "name": "Love Potion Perfumed Body Cream",
+    "subtitle": "Sensual Body Care & Scent Layering",
+    "category": "Fragrance",
+    "subCategory": "Body Fragrance",
+    "priceGHS": 222,
+    "originalPriceGHS": 260,
+    "volume": "250 ml",
+    "page": 15,
+    "image": "/catalog/page_15.jpg",
+    "badge": "Best Seller",
+    "rating": 4.9,
+    "reviewsCount": 118,
+    "description": "Experience pure passion with an intoxicating blend of spicy ginger, cocoa blossom, and seductive chocolate. Rich, velvety texture moisturizes skin while leaving a captivating aroma.",
+    "notes": [
+      "Ginger",
+      "Cocoa Blossom",
+      "Dark Chocolate"
+    ],
+    "benefits": [
+      "Intensive 24-hour hydration",
+      "Non-greasy velvety finish",
+      "Amplifies fragrance longevity"
+    ],
+    "olfactoryPyramid": {
+      "top": [
+        "Spicy Ginger",
+        "Rum Accord",
+        "Tangerine"
+      ],
+      "heart": [
+        "Cocoa Blossom",
+        "White Lily",
+        "Vanilla Flower"
+      ],
+      "base": [
+        "Dark Chocolate",
+        "Tonka Bean",
+        "Sandalwood"
+      ]
+    },
+    "perfumer": "Jean Jacques",
+    "sillage": "Intimate & Sensual",
+    "longevity": "24H Scent-Lock Cream"
+  },
+  {
+    "id": "greater-edt-her",
+    "code": "43118",
+    "name": "Greater Eau de Toilette for Her",
+    "subtitle": "Inspiring Floral Citrus Energizer",
+    "category": "Fragrance",
+    "subCategory": "Women",
+    "priceGHS": 528,
+    "originalPriceGHS": 610,
+    "volume": "50 ml",
+    "page": 16,
+    "image": "/catalog/page_16.jpg",
+    "badge": "Top Rated",
+    "rating": 4.7,
+    "reviewsCount": 74,
+    "description": "Designed to fuel your ambitions. Powered by an uplifting burst of Mandarin, vibrant Pear, and confident floral heart that inspires you to achieve greater every day.",
+    "notes": [
+      "Mandarin",
+      "Pear",
+      "Ambery Woods",
+      "Lily of the Valley"
+    ],
+    "benefits": [
+      "Aura-lifting fragrance technology",
+      "Crisp all-day freshness"
+    ],
+    "olfactoryPyramid": {
+      "top": [
+        "Crisp Green Pear",
+        "Mandarin",
+        "Freesia"
+      ],
+      "heart": [
+        "Lily of the Valley",
+        "Tuberose",
+        "Ylang Ylang"
+      ],
+      "base": [
+        "Solar Amber",
+        "White Cedar",
+        "Sensual Musk"
+      ]
+    },
+    "perfumer": "Aura-Activation Lab (Stockholm)",
+    "sillage": "Uplifting",
+    "longevity": "8 Hours"
+  },
+  {
+    "id": "greater-edt-him",
+    "code": "38552",
+    "name": "Greater Eau de Toilette for Him",
+    "subtitle": "Dynamic Masculine Energy",
+    "category": "Fragrance",
+    "subCategory": "Men",
+    "priceGHS": 528,
+    "originalPriceGHS": 610,
+    "volume": "75 ml",
+    "page": 21,
+    "image": "/catalog/page_21.jpg",
+    "badge": "Popular",
+    "rating": 4.8,
+    "reviewsCount": 96,
+    "description": "Ignite your inner drive with pulsating notes of pineapple, geranium, and guaiac wood. Formulated with Aurora technology to energize your aura from morning to night.",
+    "notes": [
+      "Pineapple",
+      "Geranium",
+      "Guaiac Wood",
+      "Cedar"
+    ],
+    "benefits": [
+      "Invigorating sillage",
+      "Perfect for active professionals"
+    ],
+    "olfactoryPyramid": {
+      "top": [
+        "Fresh Pineapple",
+        "Italian Lemon",
+        "Maritime Accord"
+      ],
+      "heart": [
+        "Bourbon Geranium",
+        "Lavender Essence",
+        "Rosemary"
+      ],
+      "base": [
+        "Guaiac Wood",
+        "Virginian Cedar",
+        "Clean Patchouli"
+      ]
+    },
+    "perfumer": "Aura-Activation Lab (Stockholm)",
+    "sillage": "Dynamic",
+    "longevity": "8–10 Hours"
+  },
+  {
+    "id": "glacier-rock-edt",
+    "code": "42816",
+    "name": "Glacier Rock Eau de Toilette",
+    "subtitle": "Crisp Arctic Thrill",
+    "category": "Fragrance",
+    "subCategory": "Men",
+    "priceGHS": 317,
+    "originalPriceGHS": 375,
+    "volume": "100 ml",
+    "page": 19,
+    "image": "/catalog/page_19.jpg",
+    "badge": "Special Offer",
+    "rating": 4.6,
+    "reviewsCount": 89,
+    "description": "Feel the electric rush of excitement. Thrilling citrus notes of yellow lemon fuse with cool mineral tones and classic woody base to push your limits.",
+    "notes": [
+      "Yellow Lemon",
+      "Cucumber Accord",
+      "Mineral Amber",
+      "Musk"
+    ],
+    "benefits": [
+      "Massive 100ml value bottle",
+      "Cooling freshness after gym/sports"
+    ],
+    "olfactoryPyramid": {
+      "top": [
+        "Yellow Lemon",
+        "Cucumber Crisp",
+        "Icy Rosemary"
+      ],
+      "heart": [
+        "Artemisia",
+        "Crisp Apple Accord",
+        "Mineral Ozone"
+      ],
+      "base": [
+        "Floated Wood",
+        "Amber Crystals",
+        "Clean Musk"
+      ]
+    },
+    "perfumer": "Bernard Ellena",
+    "sillage": "Invigorating",
+    "longevity": "7–9 Hours"
+  },
+  {
+    "id": "giordani-gold-man",
+    "code": "38538",
+    "name": "Giordani Gold Man Eau de Parfum",
+    "subtitle": "Timeless Italian Craftsmanship",
+    "category": "Fragrance",
+    "subCategory": "Men",
+    "priceGHS": 573,
+    "originalPriceGHS": 680,
+    "volume": "75 ml",
+    "page": 20,
+    "image": "/catalog/page_7.jpg",
+    "badge": "Iconic Luxury",
+    "rating": 5.0,
+    "reviewsCount": 164,
+    "description": "The epitome of sophisticated masculine charisma. Anchored by responsibly sourced vetiver from Haiti, radiating refined smoky warmth and timeless Italian elegance.",
+    "notes": [
+      "Bergamot",
+      "Black Pepper",
+      "Haitian Vetiver",
+      "Sandalwood"
+    ],
+    "benefits": [
+      "Refined Eau de Parfum concentration",
+      "Multi-award winning signature scent"
+    ],
+    "olfactoryPyramid": {
+      "top": [
+        "Calabrian Bergamot",
+        "Mandarin Oil",
+        "Black Pepper"
+      ],
+      "heart": [
+        "Jasmine Petals",
+        "Neroli Essence",
+        "Cinnamon Bark"
+      ],
+      "base": [
+        "Haitian Vetiver",
+        "Mysore Sandalwood",
+        "Amber Resins"
+      ]
+    },
+    "perfumer": "Maurice Roucel (Paris)",
+    "sillage": "Distinguished",
+    "longevity": "12+ Hours"
+  },
+  {
+    "id": "novage-intense-capsules",
+    "code": "42256",
+    "name": "Novage+ Intense Nourishment Facial Oil Capsules",
+    "subtitle": "6 Natural Nutrient-Rich Oils",
+    "category": "Skincare",
+    "subCategory": "Serums & Treatments",
+    "priceGHS": 734,
+    "originalPriceGHS": 840,
+    "volume": "30 pcs",
+    "page": 8,
+    "image": "/catalog/page_8.jpg",
+    "badge": "Icon Award Winner",
+    "rating": 5.0,
+    "reviewsCount": 142,
+    "description": "A deeply replenishing single-dose luxury treatment. 88% agreed skin looks more radiant and 90% felt skin replenished within 2 weeks. Packed with Sesame, Avocado, Peach Kernel, Meadowfoam, Blackcurrant, and Soya oils.",
+    "notes": [],
+    "benefits": [
+      "Clinically proven barrier restoration",
+      "Biodegradable capsule packaging",
+      "88% said skin looks visibly younger"
+    ],
+    "bioActives": [
+      "Sesame Seed Oil",
+      "Avocado Lipids",
+      "Peach Kernel",
+      "Meadowfoam",
+      "Blackcurrant Extract"
+    ],
+    "clinicalResults": [
+      "88% confirmed visible radiance in 14 days",
+      "90% skin replenishment index"
+    ],
+    "routineStep": "Step 3: Intensive Cellular Nourishment"
+  },
+  {
+    "id": "novage-restore-routine",
+    "code": "45923",
+    "name": "Novage+ Restore Renewing Complete 5-Piece Routine",
+    "subtitle": "Bio-Activating Cellular Age Defense",
+    "category": "Skincare",
+    "subCategory": "Sets & Routines",
+    "priceGHS": 2640,
+    "originalPriceGHS": 3344,
+    "volume": "5 Full-Size Products",
+    "page": 25,
+    "image": "/catalog/page_25.jpg",
+    "badge": "Save GHS 704",
+    "rating": 5.0,
+    "reviewsCount": 87,
+    "description": "The ultimate skin transformation system. Includes Refresh Gel Cleanser, Restore Eye Cream, Firming Serum, Multi-Active Day Cream SPF 30, and Night Recovery Cream. Powered by 11 Bio-activating technologies.",
+    "notes": [],
+    "benefits": [
+      "4x greater firmness in 2 weeks",
+      "Reduces deep wrinkles and dark spots",
+      "Full 3-month comprehensive system"
+    ],
+    "bioActives": [
+      "Bio CollagenPro",
+      "Bio Lipid System",
+      "Bio Aspartolift",
+      "Advanced Hyaluronic Acid"
+    ],
+    "clinicalResults": [
+      "4x greater epidermal elasticity in 2 weeks",
+      "Reduces deep wrinkle volume by 32%"
+    ],
+    "routineStep": "Complete 4-Step Regimen (AM & PM)"
+  },
+  {
+    "id": "novage-refresh-cleanser",
+    "code": "41029",
+    "name": "Novage+ Refresh Gel Cleanser",
+    "subtitle": "Bio Lipid System Formula",
+    "category": "Skincare",
+    "subCategory": "Cleansers",
+    "priceGHS": 345,
+    "originalPriceGHS": 390,
+    "volume": "150 ml",
+    "page": 26,
+    "image": "/catalog/page_25.jpg",
+    "badge": "Essential",
+    "rating": 4.8,
+    "reviewsCount": 53,
+    "description": "Cleanses impurities, makeup, and pollutants while respecting the skin natural moisture barrier. Formulated with skin-identical lipids.",
+    "notes": [],
+    "benefits": [
+      "Preserves microbiome balance",
+      "Zero tightness or dryness",
+      "Prepares skin for optimal serum absorption"
+    ],
+    "bioActives": [
+      "Bio Lipid System",
+      "Natural Betaine",
+      "Skin-Identical Lipids"
+    ],
+    "clinicalResults": [
+      "Zero moisture barrier stripping",
+      "Removes 99% of particulate pollutants"
+    ],
+    "routineStep": "Step 1: Cleanse & Prep"
+  },
+  {
+    "id": "optimals-even-out-serum",
+    "code": "45248",
+    "name": "Optimals Even Out Hyperpigmentation Serum",
+    "subtitle": "With UniTone & Vitamin C from Cranberry",
+    "category": "Skincare",
+    "subCategory": "Serums & Treatments",
+    "priceGHS": 380,
+    "originalPriceGHS": 440,
+    "volume": "30 ml",
+    "page": 24,
+    "image": "/catalog/page_24.jpg",
+    "badge": "Dermatologist Tested",
+    "rating": 4.8,
+    "reviewsCount": 105,
+    "description": "Target dark spots, sun damage, and uneven skin tone with concentrated plant nutrients and Vitamin C. Lightweight, rapid-absorbing formula gives an illuminated, crystal-clear glow.",
+    "notes": [],
+    "benefits": [
+      "Visibly reduces hyperpigmentation",
+      "Protects against pollution-induced discoloration",
+      "Boosts natural skin radiance"
+    ],
+    "bioActives": [
+      "UniTone Complex",
+      "Cranberry Vitamin C",
+      "Sweet Cherry AHA"
+    ],
+    "clinicalResults": [
+      "Reduces visible hyperpigmentation in 21 days",
+      "Uniform tone radiance index +41%"
+    ],
+    "routineStep": "Step 3: Target & Illuminate"
+  },
+  {
+    "id": "love-nature-purifying-mask",
+    "code": "47277",
+    "name": "Love Nature Purifying Clay Mask with Organic Tea Tree & Lime",
+    "subtitle": "Mattified, Clarified & Selfie-Ready",
+    "category": "Skincare",
+    "subCategory": "Face Masks",
+    "priceGHS": 135,
+    "originalPriceGHS": 160,
+    "volume": "50 ml",
+    "page": 5,
+    "image": "/catalog/page_5.jpg",
+    "badge": "97% Cleansed",
+    "rating": 4.7,
+    "reviewsCount": 76,
+    "description": "Say goodbye to excess oil, clogged pores, and blemishes. 97% of consumers confirmed skin felt deeply cleansed after just 1 use. Formulated with organic Mexican lime and Australian tea tree.",
+    "notes": [],
+    "benefits": [
+      "Instant mattifying effect",
+      "Pore-clarifying natural salicylic action",
+      "Biodegradable formula"
+    ],
+    "bioActives": [
+      "Organic Australian Tea Tree Oil",
+      "Mexican Lime Extract",
+      "Kaolin Clay"
+    ],
+    "clinicalResults": [
+      "97% deeply purified sensation in 1 application",
+      "Instant 8-hour sebum control"
+    ],
+    "routineStep": "Bi-Weekly Specialty Treatment"
+  },
+  {
+    "id": "the-one-pump-plump-mascara",
+    "code": "46594",
+    "name": "THE ONE Pump & Plump Mascara",
+    "subtitle": "Face of Nigeria 2026 Ambassador Favorite",
+    "category": "Makeup",
+    "subCategory": "Eyes",
+    "priceGHS": 216,
+    "originalPriceGHS": 250,
+    "volume": "8 ml",
+    "page": 11,
+    "image": "/catalog/page_11.jpg",
+    "badge": "Face of Nigeria Pick",
+    "rating": 4.9,
+    "reviewsCount": 132,
+    "description": "As worn and recommended by Muhibba Jumare (Face of Nigeria). 92% of users saw instantly thicker-looking lashes in just 1 stroke. Features natural origin volumising fibres and nourishing Vitamin F.",
+    "notes": [],
+    "benefits": [
+      "5-in-1: Cares, curls, separates, lengthens & volumises",
+      "Smudge-proof up to 16 hours",
+      "Tested across all lash types"
+    ],
+    "finish": "Volumized Feather Lash",
+    "variants": [
+      {
+        "name": "Onyx Midnight Black",
+        "code": "46594",
+        "hex": "#1A1817"
+      }
+    ],
+    "clinicalResults": [
+      "92% saw thicker lashes in 1 coat",
+      "Tested on short, straight & curved lashes"
+    ]
+  },
+  {
+    "id": "the-one-wonder-lash-xxl",
+    "code": "47170",
+    "name": "THE ONE Wonder Lash XXL Mascara Black",
+    "subtitle": "Dual-Sided HD Precision Brush",
+    "category": "Makeup",
+    "subCategory": "Eyes",
+    "priceGHS": 186,
+    "originalPriceGHS": 220,
+    "volume": "8 ml",
+    "page": 11,
+    "image": "/catalog/page_11.jpg",
+    "badge": "Best Seller",
+    "rating": 4.8,
+    "reviewsCount": 210,
+    "description": "Award-winning legendary mascara with patented brush technology that grips and lifts even the smallest eyelashes for an eye-opening falsies effect.",
+    "notes": [],
+    "benefits": [
+      "Up to 19x more volume",
+      "Infused with conditioning Pro-Vitamin B5",
+      "Flake-resistant"
+    ],
+    "finish": "HD Precision High-Definition",
+    "variants": [
+      {
+        "name": "Pitch Black",
+        "code": "47170",
+        "hex": "#11100F"
+      }
+    ],
+    "clinicalResults": [
+      "Up to 19x lash volume amplification",
+      "Zero flake formula for 16-hour wear"
+    ]
+  },
+  {
+    "id": "oncolour-gloss-dulce",
+    "code": "46589",
+    "name": "OnColour Luscious Lip Gloss - Dulce de Leche",
+    "subtitle": "Crystal-Clear Glossy & Shimmer Finish",
+    "category": "Makeup",
+    "subCategory": "Lips",
+    "priceGHS": 120,
+    "originalPriceGHS": 140,
+    "volume": "8 ml",
+    "page": 6,
+    "image": "/catalog/page_6.jpg",
+    "badge": "Trending",
+    "rating": 4.6,
+    "reviewsCount": 64,
+    "description": "Non-sticky, lightweight comfort with all-day moisture. Nourishes lips with lasting high-shine mirror reflection for a healthy, fuller appearance.",
+    "notes": [],
+    "benefits": [
+      "Enriched with Vitamin E & natural oils",
+      "Delicate sweet scent",
+      "Zero stickiness"
+    ],
+    "finish": "Mirror-High Gloss",
+    "variants": [
+      {
+        "name": "Dulce de Leche",
+        "code": "46594",
+        "hex": "#C38B76"
+      },
+      {
+        "name": "Mango Glow",
+        "code": "46589",
+        "hex": "#E89058"
+      },
+      {
+        "name": "Raspberry Cream",
+        "code": "46590",
+        "hex": "#C4576C"
+      }
+    ]
+  },
+  {
+    "id": "milk-honey-sugar-scrub",
+    "code": "47224",
+    "name": "Milk & Honey Gold Smoothing Sugar Scrub",
+    "subtitle": "Organic Milk & Honey Extracts",
+    "category": "Personal Care",
+    "subCategory": "Body Scrubs",
+    "priceGHS": 195,
+    "originalPriceGHS": 230,
+    "volume": "200 ml",
+    "page": 10,
+    "image": "/catalog/page_10.jpg",
+    "badge": "Cult Classic",
+    "rating": 5.0,
+    "reviewsCount": 320,
+    "description": "The golden standard of luxury exfoliation. Real sugar crystals gently buff away dead cells while organic milk proteins and honey lavish skin in deep moisture and heavenly fragrance.",
+    "notes": [],
+    "benefits": [
+      "Instantly reveals baby-soft silky skin",
+      "Organic organically sourced extracts",
+      "Rich amber honey aroma"
+    ]
+  },
+  {
+    "id": "feminelle-soothing-wash",
+    "code": "46965",
+    "name": "Feminelle Soothing Intimate Wash with Aloe Vera",
+    "subtitle": "pH-Balanced Prebiotic Lactic Acid",
+    "category": "Personal Care",
+    "subCategory": "Intimate Care",
+    "priceGHS": 180,
+    "originalPriceGHS": 210,
+    "volume": "300 ml",
+    "page": 9,
+    "image": "/catalog/page_9.jpg",
+    "badge": "Gynecologist Approved",
+    "rating": 4.9,
+    "reviewsCount": 178,
+    "description": "Gentle everyday intimate cleanser formulated with natural lactic acid and soothing aloe vera extract. Protects natural microflora and provides fresh comfort all day long.",
+    "notes": [],
+    "benefits": [
+      "Soap-free & hypoallergenic",
+      "Natural prebiotic microflora defense",
+      "Generous 300ml family bottle"
+    ]
+  },
+  {
+    "id": "north-for-men-subzero-rollon",
+    "code": "46633",
+    "name": "North For Men Subzero Deodorant Roll-On",
+    "subtitle": "Enhanced Arctic Pro Defence + Electrolytes",
+    "category": "Personal Care",
+    "subCategory": "Men Grooming",
+    "priceGHS": 63,
+    "originalPriceGHS": 75,
+    "volume": "50 ml",
+    "page": 1,
+    "image": "/catalog/page_1.jpg",
+    "badge": "72H Protection",
+    "rating": 4.8,
+    "reviewsCount": 150,
+    "description": "Arctic root extract from eastern Siberia shields skin against environmental stressors. Provides 72-hour anti-perspirant protection with an icy cooling sensation.",
+    "notes": [],
+    "benefits": [
+      "No white marks on clothing",
+      "Quick-drying active shield",
+      "Dermatologically tested"
+    ]
+  },
+  {
+    "id": "wellosophy-wellness-pack",
+    "code": "38838",
+    "name": "Wellosophy Daily Wellness Pack for Women",
+    "subtitle": "Complete 30-Day Nutritional Foundation",
+    "category": "Nutrition & Wellness",
+    "subCategory": "Daily Supplements",
+    "priceGHS": 792,
+    "originalPriceGHS": 920,
+    "volume": "30 Sachets",
+    "page": 30,
+    "image": "/catalog/page_30.jpg",
+    "badge": "Doctor Formulated",
+    "rating": 4.9,
+    "reviewsCount": 92,
+    "description": "Convenient daily sachet containing 1 Multivitamin & Mineral tablet, 2 Omega-3 pure fish oil capsules, and 1 Astaxanthin & Bilberry antioxidant capsule. Supports immune health, energy, and radiant skin from within.",
+    "notes": [],
+    "benefits": [
+      "All-in-one daily defense sachet",
+      "High-purity sustainably sourced Omega 3",
+      "Super-potent Astaxanthin antioxidant"
+    ],
+    "clinicalResults": [
+      "Supports cellular immune resilience",
+      "Optimal EPA/DHA cardiovascular ratio"
+    ],
+    "certifications": [
+      "GMP Certified",
+      "Friend of the Sea Sustainable Omega-3",
+      "Non-GMO"
+    ]
+  },
+  {
+    "id": "wellosophy-multivitamin-woman",
+    "code": "38559",
+    "name": "Wellosophy Multivitamin & Mineral Woman",
+    "subtitle": "22 Essential Micronutrients Tailored for Women",
+    "category": "Nutrition & Wellness",
+    "subCategory": "Vitamins & Minerals",
+    "priceGHS": 549,
+    "originalPriceGHS": 630,
+    "volume": "60 Tablets (2 Months)",
+    "page": 31,
+    "image": "/catalog/page_31.jpg",
+    "badge": "High Potency",
+    "rating": 4.8,
+    "reviewsCount": 85,
+    "description": "Scientifically formulated with optimal ratios of Iron, Calcium, Folic Acid, and Vitamin D to promote female vitality, bone health, and hormone equilibrium.",
+    "notes": [],
+    "benefits": [
+      "High bio-availability absorption",
+      "Non-GMO & gluten-free",
+      "Full 60-day supply"
+    ],
+    "clinicalResults": [
+      "Meets 100% EFSA nutrient reference values for women"
+    ],
+    "certifications": [
+      "Pharmaceutical Grade Standards",
+      "Gluten Free",
+      "Bio-Available Mineral Chelates"
+    ]
+  },
+  {
+    "id": "duologi-intense-repair-shampoo",
+    "code": "41362",
+    "name": "Duologi Intense Repair & Strength Shampoo",
+    "subtitle": "Skin-Care Inspired Keratin & Oat Peptides",
+    "category": "Personal Care",
+    "subCategory": "Hair Care",
+    "priceGHS": 195,
+    "originalPriceGHS": 225,
+    "volume": "250 ml",
+    "page": 32,
+    "image": "/catalog/page_32.jpg",
+    "badge": "Hair Transformation",
+    "rating": 4.7,
+    "reviewsCount": 67,
+    "description": "Treat your hair like your skin. Infused with keratin and bio-mimetic oat peptides to reconstruct damaged hair fibers, eliminate split ends, and restore mirror shine.",
+    "notes": [],
+    "benefits": [
+      "Reduces breakage by up to 83%",
+      "Sulfate-conscious gentle wash",
+      "Silky lightweight bounce"
+    ]
+  },
+  {
+    "id": "activelle-invisible-fresh",
+    "code": "47692",
+    "name": "Activelle Invisible Fresh Anti-Perspirant",
+    "subtitle": "Zero White Marks & ActiBoost Scent Technology",
+    "category": "Personal Care",
+    "subCategory": "Deodorant",
+    "priceGHS": 115,
+    "originalPriceGHS": 135,
+    "volume": "50 ml",
+    "page": 4,
+    "image": "/catalog/page_4.jpg",
+    "badge": "48H Protection",
+    "rating": 4.8,
+    "reviewsCount": 112,
+    "description": "Motion-activated microcapsules burst open to release fresh floral-fruity scent right when you need it most. Protects black and white clothes from stains.",
+    "notes": [
+      "Floral-Fruity-Green Accord"
+    ],
+    "benefits": [
+      "Guaranteed no white marks",
+      "ActiBoost micro-capsule tech",
+      "48-hour continuous defense"
+    ]
+  }
+]

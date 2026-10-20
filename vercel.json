@@ -1,0 +1,6 @@
+{
+  "framework": "vite",
+  "buildCommand": "npm run build --prefix store",
+  "outputDirectory": "store/dist",
+  "installCommand": "npm install --prefix store"
+}
