@@ -8,9 +8,16 @@
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
+:root {
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
 /* Custom transitions and theme defaults */
 html {
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.4s var(--ease-luxury), color 0.4s var(--ease-luxury);
+  scroll-behavior: smooth;
 }
 
 html.dark {
@@ -19,7 +26,8 @@ html.dark {
 
 body {
   font-family: var(--font-sans);
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.4s var(--ease-luxury), color 0.4s var(--ease-luxury);
+  overflow-x: hidden;
 }
 
 .font-serif {
@@ -36,29 +44,102 @@ body {
 
 /* Glassmorphism Luxury Panels */
 .glass-panel-luxury {
-  background: rgba(255, 255, 255, 0.90);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(222, 181, 115, 0.28);
-  box-shadow: 0 10px 30px -10px rgba(196, 139, 59, 0.12);
+  box-shadow: 0 12px 35px -10px rgba(196, 139, 59, 0.12);
+  transition: background-color 0.4s var(--ease-luxury), border-color 0.3s ease, box-shadow 0.4s var(--ease-luxury);
 }
 
 .dark .glass-panel-luxury {
-  background: rgba(10, 10, 10, 0.90);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(10, 10, 12, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(222, 181, 115, 0.2);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.85);
+  box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.85);
 }
 
-/* Modern Rounded Beauty Card */
+/* Modern Rounded Beauty Card with Velvety Lift */
 .beauty-card {
   border-radius: 1.5rem;
-  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.45s var(--ease-luxury), box-shadow 0.45s var(--ease-luxury), border-color 0.3s ease;
+  will-change: transform, box-shadow;
 }
 
 .beauty-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -15px rgba(222, 181, 115, 0.22);
+}
+
+.dark .beauty-card:hover {
+  box-shadow: 0 20px 40px -15px rgba(222, 181, 115, 0.12);
+}
+
+/* Luxury Easing Utility Classes */
+.ease-luxury {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ease-spring {
+  transition-timing-function: cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+/* Luxury Keyframes */
+@keyframes luxuryFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes luxuryZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes luxurySlideRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulseGlowGold {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(222, 181, 115, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(222, 181, 115, 0.45);
+  }
+}
+
+.animate-luxury-fade-up {
+  animation: luxuryFadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-luxury-zoom {
+  animation: luxuryZoom 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-luxury-drawer {
+  animation: luxurySlideRight 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.pulse-glow-gold {
+  animation: pulseGlowGold 3s infinite ease-in-out;
 }
 
 /* Custom Scrollbars */
@@ -72,6 +153,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #DEB573;
   border-radius: 9999px;
+  transition: background-color 0.2s ease;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #C48B3B;

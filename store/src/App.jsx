@@ -37,6 +37,16 @@ const CURRENCIES = storeConfig.currencies.supported;
 
 export default function App() {
   const [products, setProducts] = useState(() => storeService.getProducts());
+  const [config, setConfig] = useState(() => storeService.getConfigOverrides());
+
+  // Real-Time Cross-App & Cross-Tab Shared Backend Synchronization
+  useEffect(() => {
+    const unsubscribe = storeService.subscribe((event) => {
+      setProducts(storeService.getProducts());
+      setConfig(storeService.getConfigOverrides());
+    });
+    return unsubscribe;
+  }, []);
   const [activeCategory, setActiveCategory] = useState('All');
   const [activeSubCategory, setActiveSubCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');

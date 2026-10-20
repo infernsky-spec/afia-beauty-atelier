@@ -1,6 +1,6 @@
 /**
- * Store Service: Handles real-time order logging, inventory status,
- * and analytics persistence for the Admin Command Center.
+ * Store Service: Real-time reactive data layer for Afia Beauty Atelier.
+ * Uses localStorage + BroadcastChannel + CustomEvents for instant cross-tab & cross-app real-time synchronization.
  */
 import storeConfig from '../config/store.config';
 import initialProducts from '../data/products.json';
@@ -9,6 +9,7 @@ const STORAGE_KEYS = {
   ORDERS: 'afia_orders',
   PRODUCTS: 'afia_admin_products',
   CONFIG: 'afia_store_config',
+  ACTIVITIES: 'afia_live_activities'
 };
 
 // Seed realistic sample orders if none exist
@@ -82,13 +83,59 @@ const DEFAULT_SAMPLE_ORDERS = [
   }
 ];
 
+// Broadcast channel for instantaneous cross-tab synchronization
+const channel = typeof window !== 'undefined' && 'BroadcastChannel' in window
+  ? new BroadcastChannel('afia_realtime_store')
+  : null;
+
+const notifyListeners = (type, data) => {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('afia_store_sync', { detail: { type, data } }));
+    if (channel) {
+      try {
+        channel.postMessage({ type, data, timestamp: Date.now() });
+      } catch (err) {
+        console.warn('Broadcast channel sync notice:', err);
+      }
+    }
+  }
+};
+
 export const storeService = {
+  // Real-Time Event Subscription (Used by Customer Store and Admin Suite)
+  subscribe: (callback) => {
+    if (typeof window === 'undefined') return () => {};
+
+    const localHandler = (e) => {
+      callback(e.detail || { type: 'UNKNOWN' });
+    };
+
+    const storageHandler = (e) => {
+      if (Object.values(STORAGE_KEYS).includes(e.key)) {
+        callback({ type: 'STORAGE_CHANGE', key: e.key });
+      }
+    };
+
+    window.addEventListener('afia_store_sync', localHandler);
+    window.addEventListener('storage', storageHandler);
+
+    if (channel) {
+      channel.onmessage = (msgEvent) => {
+        callback(msgEvent.data || { type: 'BROADCAST_SYNC' });
+      };
+    }
+
+    return () => {
+      window.removeEventListener('afia_store_sync', localHandler);
+      window.removeEventListener('storage', storageHandler);
+    };
+  },
+
   // Orders
   getOrders: () => {
     try {
       const saved = localStorage.getItem(STORAGE_KEYS.ORDERS);
       if (saved) return JSON.parse(saved);
-      // Pre-populate with realistic orders on first load
       localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(DEFAULT_SAMPLE_ORDERS));
       return DEFAULT_SAMPLE_ORDERS;
     } catch {
@@ -99,8 +146,15 @@ export const storeService = {
   addOrder: (order) => {
     try {
       const orders = storeService.getOrders();
-      const updated = [order, ...orders];
+      const newOrder = {
+        ...order,
+        id: order.id || `TXN-${Date.now().toString().slice(-6)}`,
+        date: order.date || new Date().toISOString()
+      };
+      const updated = [newOrder, ...orders];
       localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(updated));
+      storeService.logActivity(`New order ${newOrder.id} placed by ${newOrder.customer} (GH₵ ${newOrder.totalGHS})`);
+      notifyListeners('ORDER_ADDED', newOrder);
       return updated;
     } catch (e) {
       console.error('Error saving new order:', e);
@@ -113,6 +167,8 @@ export const storeService = {
       const orders = storeService.getOrders();
       const updated = orders.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o));
       localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(updated));
+      storeService.logActivity(`Order ${orderId} updated to ${newStatus}`);
+      notifyListeners('ORDER_STATUS_UPDATED', { orderId, newStatus });
       return updated;
     } catch (e) {
       console.error('Error updating order:', e);
@@ -125,6 +181,8 @@ export const storeService = {
       const orders = storeService.getOrders();
       const updated = orders.filter((o) => o.id !== orderId);
       localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(updated));
+      storeService.logActivity(`Order ${orderId} was removed`);
+      notifyListeners('ORDER_DELETED', { orderId });
       return updated;
     } catch (e) {
       console.error('Error deleting order:', e);
@@ -150,12 +208,29 @@ export const storeService = {
       const newProduct = {
         ...product,
         id: product.id || (product.name ? product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : `product-${Date.now()}`),
+        inStock: product.inStock !== false
       };
-      const updated = [...products, newProduct];
+      const updated = [newProduct, ...products];
       localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(updated));
+      storeService.logActivity(`Added new formulation: ${newProduct.name}`);
+      notifyListeners('PRODUCT_ADDED', newProduct);
       return updated;
     } catch (e) {
       console.error('Error adding product:', e);
+      return [];
+    }
+  },
+
+  updateProduct: (productId, updates) => {
+    try {
+      const products = storeService.getProducts();
+      const updated = products.map((p) => (p.id === productId ? { ...p, ...updates } : p));
+      localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(updated));
+      storeService.logActivity(`Updated formulation specs: ${updates.name || productId}`);
+      notifyListeners('PRODUCT_UPDATED', { productId, updates });
+      return updated;
+    } catch (e) {
+      console.error('Error updating product:', e);
       return [];
     }
   },
@@ -167,6 +242,8 @@ export const storeService = {
         p.id === productId ? { ...p, priceGHS: Number(newPriceGHS) } : p
       );
       localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(updated));
+      storeService.logActivity(`Price adjusted for ${productId} to GH₵ ${newPriceGHS}`);
+      notifyListeners('PRODUCT_PRICE_UPDATED', { productId, newPriceGHS });
       return updated;
     } catch (e) {
       console.error('Error updating product price:', e);
@@ -174,16 +251,23 @@ export const storeService = {
     }
   },
 
-  updateProduct: (productId, updates) => {
+  toggleProductStock: (productId) => {
     try {
       const products = storeService.getProducts();
-      const updated = products.map((p) =>
-        p.id === productId ? { ...p, ...updates } : p
-      );
+      let toggledTo = true;
+      const updated = products.map((p) => {
+        if (p.id === productId) {
+          toggledTo = p.inStock === false ? true : false;
+          return { ...p, inStock: toggledTo };
+        }
+        return p;
+      });
       localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(updated));
+      storeService.logActivity(`Stock for ${productId} set to ${toggledTo ? 'In Stock' : 'Out of Stock'}`);
+      notifyListeners('PRODUCT_STOCK_TOGGLED', { productId, inStock: toggledTo });
       return updated;
     } catch (e) {
-      console.error('Error updating product:', e);
+      console.error('Error toggling product stock:', e);
       return [];
     }
   },
@@ -193,23 +277,11 @@ export const storeService = {
       const products = storeService.getProducts();
       const updated = products.filter((p) => p.id !== productId);
       localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(updated));
+      storeService.logActivity(`Deleted formulation: ${productId}`);
+      notifyListeners('PRODUCT_DELETED', { productId });
       return updated;
     } catch (e) {
       console.error('Error deleting product:', e);
-      return [];
-    }
-  },
-
-  toggleProductStock: (productId) => {
-    try {
-      const products = storeService.getProducts();
-      const updated = products.map((p) =>
-        p.id === productId ? { ...p, inStock: p.inStock === false ? true : false } : p
-      );
-      localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(updated));
-      return updated;
-    } catch (e) {
-      console.error('Error toggling product stock:', e);
       return [];
     }
   },
@@ -227,6 +299,8 @@ export const storeService = {
   saveConfigOverrides: (newConfig) => {
     try {
       localStorage.setItem(STORAGE_KEYS.CONFIG, JSON.stringify(newConfig));
+      storeService.logActivity('Storefront identity & feature switches updated');
+      notifyListeners('CONFIG_SAVED', newConfig);
       return newConfig;
     } catch (e) {
       console.error('Error saving config overrides:', e);
@@ -234,114 +308,59 @@ export const storeService = {
     }
   },
 
-  // Analytics — computed from orders & products
-  getAnalytics: () => {
+  // Live Activity Log
+  getActivities: () => {
     try {
-      const orders = storeService.getOrders();
-
-      const totalRevenue = orders.reduce((sum, o) => sum + (o.totalGHS || 0), 0);
-      const totalOrders = orders.length;
-      const avgOrderValue = totalOrders > 0 ? Math.round((totalRevenue / totalOrders) * 100) / 100 : 0;
-
-      const pendingOrders = orders.filter((o) => o.status === 'Pending Dispatch').length;
-      const dispatchedOrders = orders.filter((o) => o.status === 'Dispatched').length;
-      const deliveredOrders = orders.filter((o) => o.status === 'Delivered').length;
-      const vipOrders = orders.filter((o) => o.isVip).length;
-
-      // Revenue by day (last 7 days)
-      const now = new Date();
-      const dayLabels = [];
-      const dayMap = {};
-      for (let i = 6; i >= 0; i--) {
-        const d = new Date(now);
-        d.setDate(d.getDate() - i);
-        const key = d.toISOString().slice(0, 10); // YYYY-MM-DD
-        dayLabels.push(key);
-        dayMap[key] = 0;
-      }
-      orders.forEach((o) => {
-        if (o.date) {
-          const orderDay = new Date(o.date).toISOString().slice(0, 10);
-          if (dayMap[orderDay] !== undefined) {
-            dayMap[orderDay] += o.totalGHS || 0;
-          }
-        }
-      });
-      const revenueByDay = dayLabels.map((day) => ({ day, revenue: dayMap[day] }));
-
-      // Revenue by channel (paymentMethod)
-      const channelMap = {};
-      orders.forEach((o) => {
-        const channel = o.paymentMethod || 'Unknown';
-        if (!channelMap[channel]) channelMap[channel] = { revenue: 0, count: 0 };
-        channelMap[channel].revenue += o.totalGHS || 0;
-        channelMap[channel].count += 1;
-      });
-      const revenueByChannel = Object.entries(channelMap).map(([channel, data]) => ({
-        channel,
-        revenue: data.revenue,
-        count: data.count,
-      }));
-
-      // Top products (across all order items)
-      const productMap = {};
-      orders.forEach((o) => {
-        (o.items || []).forEach((item) => {
-          const name = item.name || 'Unknown';
-          if (!productMap[name]) productMap[name] = { revenue: 0, unitsSold: 0 };
-          const qty = item.qty || 1;
-          productMap[name].unitsSold += qty;
-          productMap[name].revenue += (item.price || 0) * qty;
-        });
-      });
-      const topProducts = Object.entries(productMap)
-        .map(([name, data]) => ({ name, revenue: data.revenue, unitsSold: data.unitsSold }))
-        .sort((a, b) => b.revenue - a.revenue);
-
-      // Orders by city
-      const cityMap = {};
-      orders.forEach((o) => {
-        const city = o.city || 'Unknown';
-        if (!cityMap[city]) cityMap[city] = { count: 0, revenue: 0 };
-        cityMap[city].count += 1;
-        cityMap[city].revenue += o.totalGHS || 0;
-      });
-      const ordersByCity = Object.entries(cityMap).map(([city, data]) => ({
-        city,
-        count: data.count,
-        revenue: data.revenue,
-      }));
-
-      return {
-        totalRevenue,
-        totalOrders,
-        avgOrderValue,
-        pendingOrders,
-        dispatchedOrders,
-        deliveredOrders,
-        vipOrders,
-        revenueByDay,
-        revenueByChannel,
-        topProducts,
-        ordersByCity,
-      };
-    } catch (e) {
-      console.error('Error computing analytics:', e);
-      return {
-        totalRevenue: 0,
-        totalOrders: 0,
-        avgOrderValue: 0,
-        pendingOrders: 0,
-        dispatchedOrders: 0,
-        deliveredOrders: 0,
-        vipOrders: 0,
-        revenueByDay: [],
-        revenueByChannel: [],
-        topProducts: [],
-        ordersByCity: [],
-      };
+      const saved = localStorage.getItem(STORAGE_KEYS.ACTIVITIES);
+      return saved ? JSON.parse(saved) : [
+        { text: 'Store initialized with 22 Q4 Swedish beauty formulations', time: '1 hr ago' },
+        { text: 'MTN MoMo USSD Gateway synchronized', time: '45 mins ago' },
+        { text: 'Order #TXN-MOMO-839102 logged into courier pipeline', time: '35 mins ago' }
+      ];
+    } catch {
+      return [];
     }
   },
+
+  logActivity: (text) => {
+    try {
+      const list = storeService.getActivities();
+      const updated = [{ text, time: 'Just now', id: Date.now() }, ...list.slice(0, 19)];
+      localStorage.setItem(STORAGE_KEYS.ACTIVITIES, JSON.stringify(updated));
+      notifyListeners('ACTIVITY_LOGGED', updated);
+      return updated;
+    } catch {
+      return [];
+    }
+  },
+
+  // Quick Order Simulation for live demonstration
+  simulateSampleOrder: () => {
+    const names = ['Kofi Annan', 'Esi Mensah', 'Kwame Nkrumah Jr', 'Yaa Asantewaa', 'Kwesi Arthur'];
+    const cities = ['Accra Metro', 'Kumasi Central', 'Lagos Hub (Ikeja/VI)', 'Takoradi Coast'];
+    const randomName = names[Math.floor(Math.random() * names.length)];
+    const randomCity = cities[Math.floor(Math.random() * cities.length)];
+    const randomTotal = Math.floor(Math.random() * 900) + 350;
+
+    const simulated = {
+      id: `TXN-SIM-${Math.floor(100000 + Math.random() * 900000)}`,
+      date: new Date().toISOString(),
+      customer: randomName,
+      phone: '23324' + Math.floor(1000000 + Math.random() * 9000000),
+      city: randomCity,
+      address: 'Simulated Order via Real-Time Cloud Pipeline',
+      paymentMethod: Math.random() > 0.4 ? 'MTN Mobile Money' : 'Telecel Cash',
+      items: [
+        { name: 'Top Scents Rose Mode Eau de Parfum', code: '46059', qty: 1, price: 520, variant: '50ml' }
+      ],
+      totalGHS: randomTotal,
+      isVip: Math.random() > 0.7,
+      consultantName: 'Afia Mensah',
+      status: 'Pending Dispatch'
+    };
+
+    return storeService.addOrder(simulated);
+  }
 };
 
 export default storeService;
