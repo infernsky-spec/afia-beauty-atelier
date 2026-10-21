@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-container": "#ffac68", "surface-variant": "#e4e2de", "surface-bright": "#fbf9f5", "on-primary-fixed": "#1c1b19", "outline": "#7a776f", "on-secondary-fixed-variant": "#6f3800", "surface-container-lowest": "#ffffff", "surface": "#fbf9f5", "primary-fixed": "#e6e2de", "on-error": "#ffffff", "on-secondary": "#ffffff", "surface-tint": "#605e5b", "on-surface-variant": "#494740", "secondary": "#8d4e12", "primary": "#000000", "on-surface": "#1b1c1a", "tertiary-container": "#141e11", "on-tertiary-fixed": "#141e11", "on-secondary-container": "#783e00", "surface-container-highest": "#e4e2de", "error-container": "#ffdad6", "on-primary-fixed-variant": "#484644", "on-error-container": "#93000a", "primary-container": "#1c1b19", "error": "#ba1a1a", "on-primary": "#ffffff", "surface-dim": "#dbdad6", "background": "#fbf9f5", "on-secondary-fixed": "#2f1500", "on-background": "#1b1c1a", "tertiary-fixed": "#dae6d1", "on-tertiary-container": "#7b8775", "outline-variant": "#cbc6bd", "inverse-surface": "#30312e", "surface-container": "#f0eeea", "tertiary": "#000000", "inverse-on-surface": "#f2f0ec", "on-tertiary": "#ffffff", "on-tertiary-fixed-variant": "#3f4a3a", "surface-container-low": "#f5f3ef", "surface-container-high": "#eae8e4", "secondary-fixed-dim": "#ffb77f", "on-primary-container": "#868380", "inverse-primary": "#cac6c2", "secondary-fixed": "#ffdcc4", "primary-fixed-dim": "#cac6c2", "tertiary-fixed-dim": "#becab6" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "margin": "1.25rem", "gutter": "1rem", "space-xl": "2rem", "space-md": "1rem", "gutter-lg": "1.5rem", "margin-mobile": "1rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "gutter-sm": "0.75rem", "space-sm": "0.5rem", "margin-tablet": "2rem" }, "fontFamily": { "body-md": ["DM Sans"], "display-lg-mobile": ["DM Sans"], "headline-sm": ["DM Sans"], "display-lg": ["DM Sans"], "label-sm": ["DM Sans"], "body-sm": ["DM Sans"], "label-lg": ["DM Sans"], "label-md": ["DM Sans"], "body-lg": ["DM Sans"], "headline-lg": ["DM Sans"], "headline-md": ["DM Sans"] }, "fontSize": { "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "display-lg-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "500" }], "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen antialiased"><header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(28,27,25,0.03)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Studio Minimal Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0xM42DJno5hJajyoOxUOFcnEANflHON6P1VGk_gkf307zxeLqhkzL8CaTTZi_TWSUOqH95Ci8gs5OTR1UHkeE8a4cobr1-6RwXQJpyBVCP0Jbxh8EWSYLn3tbSI23KbruqwLsxT_63JGp0W3tMzKFgr6j76W29At5VATK7oOemxqrVcoc4y57zTMH0Pe3ubxi91yDjea3l0PGk5Xc3rLS21xAOVfYrXCXaPyLnn2YeMOyqXLZy9gI"/><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface uppercase">Studio</span></div><h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate max-w-[140px] text-center hidden">Cart</h1><div class="flex items-center gap-space-xs"><button aria-label="Search" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[20px]">search</span></button><button aria-label="Notifications" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors relative"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2.5 right-2.5 w-1.5 h-1.5 rounded-full bg-secondary"></span></button><button aria-label="User Profile" class="w-11 h-11 rounded-full flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcahbStmiChsxK8g20BDwslucItwp3TYd5q5KI87S3NbnlNkiPjaa6PvSAbtijuQW6aTslNS03270FgU9nZHDSbSK6BPgWxe9FuuAZGDM84jLm3keT3lolWCigCjX9mI6JsT0jY-BuC28c-ZUNBnP4OEJO0uWZPos34A8X3FYvkpdcYAiNU4Gp4bPuGMfrOG1iWhjecyOyFQeSJuT7vmr2erovmYODt_q7z1yTJfvdg4Rir2IZHxCl"/></button></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full px-margin pb-10">
+<!-- Top Cart Navigation & Summary Bar -->
+<div class="flex items-center justify-between py-space-sm mb-space-md">
+<div class="flex items-center gap-space-xs">
+<button aria-label="Go back" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<div class="flex flex-col ml-1">
+<span class="font-headline-md text-headline-md tracking-tight text-on-surface">Cart</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">3 curated items</span>
+</div>
+</div>
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors px-space-sm py-1 rounded-full hover:bg-surface-container" id="clear-bag-btn" type="button">
+      Clear all
+    </button>
+</div>
+<!-- Cart Items List -->
+<div class="flex flex-col gap-space-sm w-full" id="cart-list">
+<!-- Item 1: Lug Boots -->
+<div class="cart-item relative flex items-center gap-space-md bg-surface-container-lowest p-space-sm rounded-lg shadow-[0_8px_24px_-4px_rgba(28,27,25,0.04)] transition-all duration-200" data-price="579">
+<div class="relative w-24 h-28 bg-surface-container-low rounded-[1.25rem] flex items-center justify-center overflow-hidden shrink-0">
+<img class="w-full h-full object-contain p-2" data-alt="Editorial studio cutout of sculptural black leather designer lug combat boots on clean warm cream background, subtle soft shadows, high fashion editorial lighting, matte finish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0gcq_1JoIx3pS54ZAnz7iwRpmYrOnhgbFU2LNwKozbmcnm7eVkbDHqaJdKFuL8PlC_GigUYMeXzCmOYpqCTmkxfOzO1_W2ys1dRZJmupuQba2AQeMwqHDGWu_9JxIEG7xNLDfYQEwlGTeonPp9qHkn0i66kZgLqIOWIVRW5SpAH2E0qdrgrsEfidEqnrJqp-4Kk730aaV1L4yuhBxKgIqW2d4SIBttlYparoSM4epDLEwjMlkdAeT"/>
+</div>
+<div class="flex flex-col flex-1 min-w-0 pr-1">
+<div class="flex items-start justify-between gap-1">
+<div class="min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Dolce &amp; Gabbana</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface leading-tight truncate">Leather Lug Boots</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Size: 42 EU • Noir</span>
+</div>
+<button aria-label="Remove item" class="remove-btn text-on-surface-variant hover:text-error transition-colors p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="flex items-center justify-between mt-3 pt-1">
+<span class="font-headline-sm text-headline-sm text-on-surface tracking-tight item-line-price">€579.00</span>
+<!-- Stepper Pill Control -->
+<div class="flex items-center bg-surface-container rounded-full px-1.5 py-1 gap-2 shadow-sm">
+<button aria-label="Decrease quantity" class="step-down w-6 h-6 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-variant active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[14px]">remove</span>
+</button>
+<span class="qty font-label-md text-label-md text-on-surface font-semibold w-4 text-center">1</span>
+<button aria-label="Increase quantity" class="step-up w-6 h-6 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-variant active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2: Zip-up Cardigan -->
+<div class="cart-item relative flex items-center gap-space-md bg-surface-container-lowest p-space-sm rounded-lg shadow-[0_8px_24px_-4px_rgba(28,27,25,0.04)] transition-all duration-200" data-price="264">
+<div class="relative w-24 h-28 bg-surface-container-low rounded-[1.25rem] flex items-center justify-center overflow-hidden shrink-0">
+<img class="w-full h-full object-contain p-2" data-alt="Studio cutout of brown wool zip-up designer knit cardigan jacket against warm muted sand background, minimalist tactile luxury knitwear texture, architectural studio illumination" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaRLojSWCBdSIMwZF2HPs7_L_K1FbGMleXgCdOyjegKFRsQ0phmc3WKh6tdOl9tArqMXxEXfdYyQwdcttjFyFP5-TpcJFPY1VsmGfQbpP5Hfqg9GmbJw4cJsbtTd4_fwn2G7-9yv9lcFz4JmNQfmHjut2-PU8Ogs70bNUvMjUMJfaYVuxUUpGKynQTcK0ME3__yUFxbYd-GiwNYnK19RdvLk8a2xOOpLMP5WI9UfvyOy5Prwlcz5GI"/>
+</div>
+<div class="flex flex-col flex-1 min-w-0 pr-1">
+<div class="flex items-start justify-between gap-1">
+<div class="min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Maison Margiela</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface leading-tight truncate">Zip-Up Knit Cardigan</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Size: M • Burnt Chestnut</span>
+</div>
+<button aria-label="Remove item" class="remove-btn text-on-surface-variant hover:text-error transition-colors p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="flex items-center justify-between mt-3 pt-1">
+<span class="font-headline-sm text-headline-sm text-on-surface tracking-tight item-line-price">€264.00</span>
+<div class="flex items-center bg-surface-container rounded-full px-1.5 py-1 gap-2 shadow-sm">
+<button aria-label="Decrease quantity" class="step-down w-6 h-6 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-variant active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[14px]">remove</span>
+</button>
+<span class="qty font-label-md text-label-md text-on-surface font-semibold w-4 text-center">1</span>
+<button aria-label="Increase quantity" class="step-up w-6 h-6 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-variant active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 3: Striped Shirt -->
+<div class="cart-item relative flex items-center gap-space-md bg-surface-container-lowest p-space-sm rounded-lg shadow-[0_8px_24px_-4px_rgba(28,27,25,0.04)] transition-all duration-200" data-price="128">
+<div class="relative w-24 h-28 bg-surface-container-low rounded-[1.25rem] flex items-center justify-center overflow-hidden shrink-0">
+<img class="w-full h-full object-contain p-2" data-alt="Editorial product shot of fine vertical striped cotton relaxed summer shirt cutout isolated on light warm beige background, clean contemporary menswear, soft directional light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu6ZIXr-vE4oBB91SbkxWbp8HBZlufs11v8G5dHBuaRWkl1SMkn7jJrCxJr79YfTJdj9qV7CTBuABtQpZ4cG2X6B1qi8KZqYu5eB5UclHaKsHuEWY5hB8nJsJs64qltgES9stODLr72ZtPL7GqB_GYB79_Tku4XG8s75L54p6vab7Aeu1oyZK39_hjLee3Wg8-7IA9Gl_q5BuMDchILWYf5hBtqcMB4Triih1QjwJcFrf4tLj5wcHg"/>
+</div>
+<div class="flex flex-col flex-1 min-w-0 pr-1">
+<div class="flex items-start justify-between gap-1">
+<div class="min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Carhartt WIP</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface leading-tight truncate">Striped Poplin Shirt</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Size: L • Ecru Stripe</span>
+</div>
+<button aria-label="Remove item" class="remove-btn text-on-surface-variant hover:text-error transition-colors p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="flex items-center justify-between mt-3 pt-1">
+<span class="font-headline-sm text-headline-sm text-on-surface tracking-tight item-line-price">€128.00</span>
+<div class="flex items-center bg-surface-container rounded-full px-1.5 py-1 gap-2 shadow-sm">
+<button aria-label="Decrease quantity" class="step-down w-6 h-6 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-variant active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[14px]">remove</span>
+</button>
+<span class="qty font-label-md text-label-md text-on-surface font-semibold w-4 text-center">1</span>
+<button aria-label="Increase quantity" class="step-up w-6 h-6 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-variant active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Promo Code Capsule Input -->
+<div class="mt-space-md relative w-full">
+<div class="flex items-center bg-surface-container-lowest rounded-full p-1.5 shadow-[0_4px_16px_-2px_rgba(28,27,25,0.03)]">
+<div class="flex items-center pl-3.5 pr-2 gap-2 text-on-surface-variant flex-1">
+<span class="material-symbols-outlined text-[18px]">sell</span>
+<input class="bg-transparent font-body-md text-body-md text-on-surface uppercase tracking-wider focus:outline-none w-full placeholder:text-on-surface-variant/60" id="promo-input" placeholder="Enter promo code" type="text" value="PROMO2025"/>
+</div>
+<button class="bg-surface-container text-on-surface font-label-md text-label-md px-4 py-2 rounded-full hover:bg-primary hover:text-on-primary transition-all active:scale-95" id="apply-promo-btn" type="button">
+        Applied
+      </button>
+</div>
+<div class="flex items-center gap-1.5 mt-2 px-3 text-secondary font-label-sm text-label-sm" id="promo-tag">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Voucher applied: €30.00 VIP seasonal concession</span>
+</div>
+</div>
+<!-- Order Cost Breakdown Card -->
+<div class="mt-space-md bg-surface-container-lowest p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(28,27,25,0.04)] flex flex-col gap-2.5">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-body-md text-body-md">Bag Subtotal</span>
+<span class="font-body-md text-body-md text-on-surface font-medium" id="subtotal-val">€971.00</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="font-body-md text-body-md">Express Courier</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold px-2 py-0.5 rounded-full">Complimentary</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">€0.00</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-body-md text-body-md">Voucher Discount</span>
+<span class="font-body-md text-body-md text-secondary font-medium" id="discount-val">-€30.00</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-body-md text-body-md">Estimated VAT (20%)</span>
+<span class="font-body-md text-body-md text-on-surface font-medium" id="tax-val">€156.83</span>
+</div>
+<!-- Soft Tonal Divider -->
+<div class="h-px bg-surface-container-high my-1.5 w-full"></div>
+<!-- Total Row -->
+<div class="flex items-baseline justify-between pt-0.5">
+<div>
+<span class="font-headline-md text-headline-md tracking-tight text-on-surface block">Total Due</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">Including duties and local taxes</span>
+</div>
+<span class="font-display-lg-mobile text-display-lg-mobile text-on-surface tracking-tight font-semibold" id="grand-total-val">€941.00</span>
+</div>
+</div>
+<!-- Delivery Assurance Micro-Card -->
+<div class="mt-space-sm bg-surface-container-low px-space-md py-space-sm rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[22px]">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-medium">Bespoke White-Glove Dispatch</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Carbon-neutral delivery in 2-3 business days</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">chevron_right</span>
+</div>
+<!-- Primary Sticky/Action Pill Button -->
+<div class="mt-space-lg w-full">
+<button class="w-full h-14 bg-primary text-on-primary rounded-full font-label-lg text-label-lg flex items-center justify-between px-space-lg shadow-[0_8px_24px_-4px_rgba(28,27,25,0.22)] active:scale-[0.98] transition-all hover:bg-primary-container" id="checkout-btn" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-on-primary">lock</span>
+<span>Continue to Pay</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm" id="btn-total">€941.00</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</div>
+</button>
+</div>
+<!-- Subtle Return Policy Note -->
+<p class="font-label-sm text-label-sm text-center text-on-surface-variant mt-space-sm px-4">
+    Complimentary 30-day doorstep returns &amp; exchanges on all luxury wardrobe orders.
+  </p>
+</div>
+<script>
+  (function () {
+    const cartItems = document.querySelectorAll('.cart-item');
+    const subtotalEl = document.getElementById('subtotal-val');
+    const grandTotalEl = document.getElementById('grand-total-val');
+    const btnTotalEl = document.getElementById('btn-total');
+    const discountEl = document.getElementById('discount-val');
+    const taxEl = document.getElementById('tax-val');
+    const promoTag = document.getElementById('promo-tag');
+    const applyPromoBtn = document.getElementById('apply-promo-btn');
+    const promoInput = document.getElementById('promo-input');
+    const clearBagBtn = document.getElementById('clear-bag-btn');
+
+    let discount = 30;
+
+    function recalculate() {
+      let subtotal = 0;
+      let count = 0;
+      const activeItems = document.querySelectorAll('.cart-item');
+
+      activeItems.forEach(item => {
+        const unitPrice = parseFloat(item.dataset.price) || 0;
+        const qty = parseInt(item.querySelector('.qty').textContent, 10) || 0;
+        subtotal += unitPrice * qty;
+        count += qty;
+
+        const linePrice = item.querySelector('.item-line-price');
+        if (linePrice) {
+          linePrice.textContent = '€' + (unitPrice * qty).toFixed(2);
+        }
+      });
+
+      if (activeItems.length === 0) {
+        discount = 0;
+      }
+
+      const total = Math.max(0, subtotal - discount);
+      const estTax = total * 0.1667;
+
+      if (subtotalEl) subtotalEl.textContent = '€' + subtotal.toFixed(2);
+      if (taxEl) taxEl.textContent = '€' + estTax.toFixed(2);
+      if (discountEl) discountEl.textContent = discount > 0 ? '-€' + discount.toFixed(2) : '€0.00';
+      if (grandTotalEl) grandTotalEl.textContent = '€' + total.toFixed(2);
+      if (btnTotalEl) btnTotalEl.textContent = '€' + total.toFixed(2);
+
+      // Update bag count in parent shell if present
+      const bagBadge = document.querySelector('[data-path="cart"] .bg-secondary');
+      if (bagBadge) {
+        bagBadge.textContent = count;
+        bagBadge.style.display = count > 0 ? 'flex' : 'none';
+      }
+    }
+
+    cartItems.forEach(item => {
+      const upBtn = item.querySelector('.step-up');
+      const downBtn = item.querySelector('.step-down');
+      const qtyEl = item.querySelector('.qty');
+      const removeBtn = item.querySelector('.remove-btn');
+
+      if (upBtn && downBtn && qtyEl) {
+        upBtn.addEventListener('click', () => {
+          let current = parseInt(qtyEl.textContent, 10);
+          if (current < 9) {
+            qtyEl.textContent = current + 1;
+            recalculate();
+          }
+        });
+
+        downBtn.addEventListener('click', () => {
+          let current = parseInt(qtyEl.textContent, 10);
+          if (current > 1) {
+            qtyEl.textContent = current - 1;
+            recalculate();
+          } else {
+            // Remove item with micro-fade
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.96)';
+            setTimeout(() => {
+              item.remove();
+              recalculate();
+            }, 180);
+          }
+        });
+      }
+
+      if (removeBtn) {
+        removeBtn.addEventListener('click', () => {
+          item.style.opacity = '0';
+          item.style.transform = 'scale(0.96)';
+          setTimeout(() => {
+            item.remove();
+            recalculate();
+          }, 180);
+        });
+      }
+    });
+
+    if (applyPromoBtn && promoInput) {
+      applyPromoBtn.addEventListener('click', () => {
+        const val = promoInput.value.trim().toUpperCase();
+        if (val === 'PROMO2025' || val === 'STUDIO10') {
+          discount = 30;
+          applyPromoBtn.textContent = 'Applied';
+          applyPromoBtn.classList.remove('bg-primary', 'text-on-primary');
+          applyPromoBtn.classList.add('bg-surface-container', 'text-on-surface');
+          promoTag.classList.remove('hidden');
+        } else if (val.length > 0) {
+          discount = 15;
+          applyPromoBtn.textContent = 'Applied';
+          promoTag.innerHTML = '<span class="material-symbols-outlined text-[16px]">check_circle</span><span>Concession code applied: &euro;15.00 discount</span>';
+          promoTag.classList.remove('hidden');
+        } else {
+          discount = 0;
+          applyPromoBtn.textContent = 'Apply';
+          promoTag.classList.add('hidden');
+        }
+        recalculate();
+      });
+    }
+
+    if (clearBagBtn) {
+      clearBagBtn.addEventListener('click', () => {
+        const list = document.getElementById('cart-list');
+        if (list) {
+          list.innerHTML = `
+            <div class="flex flex-col items-center justify-center py-12 px-6 text-center bg-surface-container-lowest rounded-lg">
+              <span class="material-symbols-outlined text-[48px] text-outline-variant mb-2">shopping_bag</span>
+              <span class="font-headline-sm text-headline-sm text-on-surface">Your bag is empty</span>
+              <p class="font-body-md text-body-md text-on-surface-variant mt-1">Discover new runway pieces and curated classics to fill your space.</p>
+            </div>
+          `;
+          recalculate();
+        }
+      });
+    }
+
+    recalculate();
+  })();
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/85 backdrop-blur-xl shadow-[0_-8px_24px_-4px_rgba(28,27,25,0.06)]" data-active-classes="bg-primary text-on-primary"><div class="flex items-center justify-around h-16 px-space-md"><a class="flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full text-on-surface-variant transition-all duration-200 min-h-[44px]" data-path="discover" href="#"><span class="material-symbols-outlined text-[22px]">explore</span><span class="font-label-md text-label-md">Discover</span></a><a class="flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full text-on-surface-variant transition-all duration-200 min-h-[44px]" data-path="categories" href="#"><span class="material-symbols-outlined text-[22px]">grid_view</span><span class="font-label-md text-label-md">Explore</span></a><a class="flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full text-on-surface-variant transition-all duration-200 min-h-[44px]" data-path="wishlist" href="#"><span class="material-symbols-outlined text-[22px]">favorite</span><span class="font-label-md text-label-md">Saved</span></a><a aria-current="page" class="flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full transition-all duration-200 min-h-[44px] relative bg-primary text-on-primary" data-path="cart" href="#"><span class="material-symbols-outlined text-[22px]">local_mall</span><span class="font-label-md text-label-md">Bag</span><span class="w-4 h-4 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm flex items-center justify-center leading-none">2</span></a></div></nav></body></html>

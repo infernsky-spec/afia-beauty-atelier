@@ -17,6 +17,8 @@ import ConsultantAffiliateModal from './components/ConsultantAffiliateModal';
 import VoiceConciergeWidget from './components/VoiceConciergeWidget';
 import ConsultantBanner from './components/ConsultantBanner';
 import MobileBottomNav from './components/MobileBottomNav';
+import OrderTrackingCarousel from './components/OrderTrackingCarousel';
+import EditorialHighlightBanner from './components/EditorialHighlightBanner';
 import Footer from './components/Footer';
 import AdminDashboard from './components/admin/AdminDashboard';
 import DemoSwitcher from './components/DemoSwitcher';
@@ -356,6 +358,11 @@ export default function App() {
         </div>
       )}
 
+      {/* Stitch Active Dispatch Courier Tracking Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 sm:pt-4">
+        <OrderTrackingCarousel onQuickViewProduct={setSelectedProduct} />
+      </div>
+
       {/* Hero Showcase */}
       <Hero
         onExploreCategory={(cat) => {
@@ -392,6 +399,14 @@ export default function App() {
           activeSubCategory={activeSubCategory}
           onSelectSubCategory={setActiveSubCategory}
           subCategories={subCategories}
+        />
+      </div>
+
+      {/* Stitch Editorial Highlight Banner */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <EditorialHighlightBanner
+          onExploreCatalogue={() => setIsCatalogueOpen(true)}
+          onScrollToProducts={scrollToProducts}
         />
       </div>
 

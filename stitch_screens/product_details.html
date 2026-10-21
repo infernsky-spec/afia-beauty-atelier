@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-container": "#ffac68", "surface-variant": "#e4e2de", "surface-bright": "#fbf9f5", "on-primary-fixed": "#1c1b19", "outline": "#7a776f", "on-secondary-fixed-variant": "#6f3800", "surface-container-lowest": "#ffffff", "surface": "#fbf9f5", "primary-fixed": "#e6e2de", "on-error": "#ffffff", "on-secondary": "#ffffff", "surface-tint": "#605e5b", "on-surface-variant": "#494740", "secondary": "#8d4e12", "primary": "#000000", "on-surface": "#1b1c1a", "tertiary-container": "#141e11", "on-tertiary-fixed": "#141e11", "on-secondary-container": "#783e00", "surface-container-highest": "#e4e2de", "error-container": "#ffdad6", "on-primary-fixed-variant": "#484644", "on-error-container": "#93000a", "primary-container": "#1c1b19", "error": "#ba1a1a", "on-primary": "#ffffff", "surface-dim": "#dbdad6", "background": "#fbf9f5", "on-secondary-fixed": "#2f1500", "on-background": "#1b1c1a", "tertiary-fixed": "#dae6d1", "on-tertiary-container": "#7b8775", "outline-variant": "#cbc6bd", "inverse-surface": "#30312e", "surface-container": "#f0eeea", "tertiary": "#000000", "inverse-on-surface": "#f2f0ec", "on-tertiary": "#ffffff", "on-tertiary-fixed-variant": "#3f4a3a", "surface-container-low": "#f5f3ef", "surface-container-high": "#eae8e4", "secondary-fixed-dim": "#ffb77f", "on-primary-container": "#868380", "inverse-primary": "#cac6c2", "secondary-fixed": "#ffdcc4", "primary-fixed-dim": "#cac6c2", "tertiary-fixed-dim": "#becab6" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "margin": "1.25rem", "gutter": "1rem", "space-xl": "2rem", "space-md": "1rem", "gutter-lg": "1.5rem", "margin-mobile": "1rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "gutter-sm": "0.75rem", "space-sm": "0.5rem", "margin-tablet": "2rem" }, "fontFamily": { "body-md": ["DM Sans"], "display-lg-mobile": ["DM Sans"], "headline-sm": ["DM Sans"], "display-lg": ["DM Sans"], "label-sm": ["DM Sans"], "body-sm": ["DM Sans"], "label-lg": ["DM Sans"], "label-md": ["DM Sans"], "body-lg": ["DM Sans"], "headline-lg": ["DM Sans"], "headline-md": ["DM Sans"] }, "fontSize": { "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "display-lg-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "500" }], "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen antialiased"><header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(28,27,25,0.03)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Go back" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[20px]">arrow_back</span></button><img alt="Studio Minimal Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwZ-olSJSb0jbdq7PC_qHS22TGFovuGszbo2vo5naOKljIiRmhW662Zx4Uzz_gOQXEkihSN1cFC5NckOnNUIzCc9YQTB5DeJfnec-P4SPU-CNNNZ58dPrkI6xMzu-yfX3Zp_wak-Pd9DW_AgA4ewkqvdpj5NFYdyUQ9DyNe_cgd1Te2h24DX7PanHOJbV1cVAqAve9BNDYPwwpLDWjgl8eF5mbOwfWQ3h9FYTzvv6nIP2cJUphgqom"/></div><h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate max-w-[180px] text-center">Product Details</h1><div class="flex items-center gap-space-xs"><button aria-label="Share" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[20px]">share</span></button><button aria-label="User Profile" class="w-11 h-11 rounded-full flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC45ozlwLj9RvpdNqGYsQKIrqFkvWQk9mXSVAe28BX7sHMwyDjroqdf5OXY7LpL6YVONaIiAJAQ1mPWLjz6-i49ILsjbnsEbYBmHvZRXc9VocRFywxqbazbKkddB7oPZBhoNkKDkFMFT-8gc8cWpXy8qbhg9dN73LwUtWqkldamW6qWnI4NRThoFD2137vxsMuzyxHADJ2O-dZGCCUYxZ-OhKR7GafCzewfIH-00hpzJM_2lNKUL90i"/></button></div></div></header><main class="flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-screen"><div class="flex flex-col w-full pb-28">
+<!-- Hero Gallery Section -->
+<section class="relative w-full px-margin pt-space-sm flex flex-col items-center">
+<div class="relative w-full aspect-[4/3.8] bg-surface-container-lowest rounded-lg shadow-sm overflow-hidden flex items-center justify-center">
+<!-- Ambient Lighting Halo -->
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface-container-low/40 to-surface-variant/20 pointer-events-none"></div>
+<!-- Main Showcase Image -->
+<img alt="Studio Soft Lounge Armchair" class="w-full h-full object-cover transition-all duration-300 transform scale-100" data-alt="Editorial catalog studio photography of an ultra-luxurious sculptural oversized lounge chair crafted with soft pleated Italian sage olive leather. Natural diffused sunlight against a seamless warm cream architectural background, soft grounded ambient drop shadow, modern tactile furniture design." id="main-product-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArhXVJLNwz9NlXUH1gBfj6IKD4ag49uKeSqdgESkpAy2EtCToTm2o7JaIY0Rr_ne7XyPy5MyPpl7-qnlzc5BTF_LK9NhvI4t264ONlG-Y4rmkAnuQnfVuq6bzUZ1rEDeKOZAuOMXePWjtQtw0K6US_fFsGiSs5tjcx5VR8z1jpP4LD7vCETQNRfulcaJGIct8Cbu5OBc78Fs_MVUXmoUse9PPPhXEfVC588n44OU8D-uWl53maPuC3"/>
+<!-- Quick Wishlist & Badge Overlay -->
+<div class="absolute top-4 inset-x-4 flex items-center justify-between pointer-events-none">
+<span class="pointer-events-auto px-3 py-1.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-label-sm text-label-sm text-on-surface uppercase tracking-wider shadow-sm">
+          SS25 Edition
+        </span>
+<button aria-label="Save to Wishlist" class="pointer-events-auto w-10 h-10 rounded-full bg-surface-container-lowest/90 backdrop-blur-md flex items-center justify-center text-on-surface shadow-sm active:scale-95 transition-transform" id="wishlist-btn">
+<span class="material-symbols-outlined text-[20px] text-on-surface" id="wishlist-icon">favorite_border</span>
+</button>
+</div>
+<!-- Pagination Indicators -->
+<div class="absolute bottom-3 flex items-center gap-1.5 px-3 py-1 bg-surface-container-lowest/70 backdrop-blur-md rounded-full">
+<div class="w-5 h-1.5 rounded-full bg-on-surface transition-all"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-on-surface/20"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-on-surface/20"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-on-surface/20"></div>
+</div>
+</div>
+<!-- Colorway / Finish Swatch Selector -->
+<div class="w-full mt-space-md">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant">Finish &amp; Texture</span>
+<span class="font-label-md text-label-md text-on-surface font-medium" id="selected-finish-name">Sage Nappa Leather</span>
+</div>
+<div class="flex items-center gap-3 overflow-x-auto py-1 scrollbar-none" id="swatch-container">
+<!-- Variant 1: Selected -->
+<button class="swatch-btn relative w-16 h-16 rounded-DEFAULT bg-surface-container-lowest p-1 shadow-sm flex flex-col items-center justify-center transition-all ring-2 ring-primary scale-105" data-finish="Sage Nappa Leather" data-img="sage">
+<div class="w-full h-full rounded-[12px] bg-[#6B7E68] overflow-hidden flex items-center justify-center relative">
+<span class="material-symbols-outlined text-[16px] text-on-primary">check</span>
+</div>
+</button>
+<!-- Variant 2 -->
+<button class="swatch-btn relative w-16 h-16 rounded-DEFAULT bg-surface-container-lowest p-1 shadow-sm flex flex-col items-center justify-center transition-all opacity-85 hover:opacity-100" data-finish="Terracotta Suede" data-img="terracotta">
+<div class="w-full h-full rounded-[12px] bg-[#B46747] overflow-hidden flex items-center justify-center relative">
+</div>
+</button>
+<!-- Variant 3 -->
+<button class="swatch-btn relative w-16 h-16 rounded-DEFAULT bg-surface-container-lowest p-1 shadow-sm flex flex-col items-center justify-center transition-all opacity-85 hover:opacity-100" data-finish="Warm Alabaster Wool" data-img="alabaster">
+<div class="w-full h-full rounded-[12px] bg-[#E2DBD1] overflow-hidden flex items-center justify-center relative">
+</div>
+</button>
+<!-- Variant 4 -->
+<button class="swatch-btn relative w-16 h-16 rounded-DEFAULT bg-surface-container-lowest p-1 shadow-sm flex flex-col items-center justify-center transition-all opacity-85 hover:opacity-100" data-finish="Charcoal Grain" data-img="charcoal">
+<div class="w-full h-full rounded-[12px] bg-[#2C2B29] overflow-hidden flex items-center justify-center relative">
+</div>
+</button>
+</div>
+</div>
+</section>
+<!-- Product Title, Pricing & Stepper -->
+<section class="w-full px-margin mt-space-md">
+<div class="bg-surface-container-lowest rounded-DEFAULT p-space-md shadow-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="min-w-0 flex-1">
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant mb-1">Studio Minimal Series 04</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface leading-snug">Studio Soft Lounge Armchair</h2>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-sm">
+<div>
+<div class="flex items-baseline gap-1.5">
+<span class="font-display-lg-mobile text-display-lg-mobile text-on-surface">$420</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ unit</span>
+</div>
+<span class="inline-block mt-0.5 px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+            In Stock • Free Global Shipping
+          </span>
+</div>
+<!-- Tactile Quantity Pill Stepper -->
+<div class="flex items-center bg-surface-container-high rounded-full p-1 shadow-inner">
+<button aria-label="Decrease quantity" class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-on-surface shadow-sm active:scale-90 transition-transform disabled:opacity-40" id="qty-minus">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="w-9 text-center font-label-lg text-label-lg text-on-surface select-none" id="qty-val">1</span>
+<button aria-label="Increase quantity" class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-on-surface shadow-sm active:scale-90 transition-transform" id="qty-plus">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Structural Metadata Spec Sheet -->
+<section class="w-full px-margin mt-space-md">
+<div class="bg-surface-container rounded-DEFAULT p-space-md">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Architectural Specs</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">REF: SM-AR-2025</span>
+</div>
+<div class="space-y-2.5">
+<div class="flex items-center justify-between py-1.5 bg-surface-container-lowest/60 px-3 rounded-DEFAULT">
+<span class="font-body-md text-body-md text-on-surface-variant">Upholstery</span>
+<span class="font-label-lg text-label-lg text-on-surface">100% Full-grain Italian Nappa</span>
+</div>
+<div class="flex items-center justify-between py-1.5 bg-surface-container-lowest/60 px-3 rounded-DEFAULT">
+<span class="font-body-md text-body-md text-on-surface-variant">Internal Structure</span>
+<span class="font-label-lg text-label-lg text-on-surface">FSC certified European Ashwood</span>
+</div>
+<div class="flex items-center justify-between py-1.5 bg-surface-container-lowest/60 px-3 rounded-DEFAULT">
+<span class="font-body-md text-body-md text-on-surface-variant">Cushioning</span>
+<span class="font-label-lg text-label-lg text-on-surface">High-resilience Ergonomic Foam</span>
+</div>
+<div class="flex items-center justify-between py-1.5 bg-surface-container-lowest/60 px-3 rounded-DEFAULT">
+<span class="font-body-md text-body-md text-on-surface-variant">Dimensions</span>
+<span class="font-label-lg text-label-lg text-on-surface">92 × 86 × 72 cm</span>
+</div>
+<div class="flex items-center justify-between py-1.5 bg-surface-container-lowest/60 px-3 rounded-DEFAULT">
+<span class="font-body-md text-body-md text-on-surface-variant">Origin &amp; Assembly</span>
+<span class="font-label-lg text-label-lg text-on-surface">Handcrafted in Florence, Italy</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Accordions -->
+<section class="w-full px-margin mt-space-md space-y-space-sm">
+<!-- Accordion 1: Craftsmanship -->
+<div class="bg-surface-container-lowest rounded-DEFAULT overflow-hidden shadow-sm">
+<button class="w-full px-space-md py-space-md flex items-center justify-between text-left" onclick="toggleAccordion('craft-content', 'craft-icon')">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-on-surface">architecture</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Design &amp; Craftsmanship</span>
+</div>
+<span class="material-symbols-outlined text-[20px] text-on-surface transition-transform duration-200" id="craft-icon">expand_more</span>
+</button>
+<div class="px-space-md pb-space-md text-on-surface-variant font-body-md text-body-md leading-relaxed hidden" id="craft-content">
+        Conceived as an embrace between raw architectural structure and plush organic comfort. Each armchair is hand-stitched with generous, ruched seams that celebrate the natural grain variance of heritage European leather. The low-slung stance brings grounding balance to minimalist living spaces.
+      </div>
+</div>
+<!-- Accordion 2: Care & Maintenance -->
+<div class="bg-surface-container-lowest rounded-DEFAULT overflow-hidden shadow-sm">
+<button class="w-full px-space-md py-space-md flex items-center justify-between text-left" onclick="toggleAccordion('care-content', 'care-icon')">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-on-surface">spa</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Care &amp; Longevity</span>
+</div>
+<span class="material-symbols-outlined text-[20px] text-on-surface transition-transform duration-200" id="care-icon">expand_more</span>
+</button>
+<div class="px-space-md pb-space-md text-on-surface-variant font-body-md text-body-md leading-relaxed hidden" id="care-content">
+        Treat annually with natural beeswax balm. Keep shielded from direct sustained summer exposure to preserve the richness of the vegetable dye. Clean gently with a slightly damp microfibre cloth.
+      </div>
+</div>
+<!-- Accordion 3: White Glove Delivery -->
+<div class="bg-surface-container-lowest rounded-DEFAULT overflow-hidden shadow-sm">
+<button class="w-full px-space-md py-space-md flex items-center justify-between text-left" onclick="toggleAccordion('ship-content', 'ship-icon')">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-on-surface">local_shipping</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Complimentary White Glove Delivery</span>
+</div>
+<span class="material-symbols-outlined text-[20px] text-on-surface transition-transform duration-200" id="ship-icon">expand_more</span>
+</button>
+<div class="px-space-md pb-space-md text-on-surface-variant font-body-md text-body-md leading-relaxed hidden" id="ship-content">
+        Arrives via scheduled delivery appointment. Our certified white-glove partners unbox, place in your designated interior room, and remove all sustainable timber crating. Includes a 30-day home trial period.
+      </div>
+</div>
+</section>
+<!-- Complete the Look / Curated Pairing -->
+<section class="w-full px-margin mt-space-lg">
+<div class="flex items-center justify-between mb-space-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Complementary Pieces</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Curated</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Paired Item 1 -->
+<div class="bg-surface-container-lowest rounded-DEFAULT p-2.5 flex flex-col shadow-sm">
+<div class="w-full aspect-square rounded-DEFAULT overflow-hidden bg-surface-container-low mb-2 relative">
+<img alt="Oak Coffee Table" class="w-full h-full object-cover" data-alt="Modern sculptural low travertine and solid oak coffee table with a small ceramic vase in an airy minimalist warm interior, serene soft lighting, scandinavian architectural product photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk0-ei9hfrcfBOzXTUoGqPusg_OEZ57Z1hnSngknTC5egOg0Yj3rGmXMGZ1sJ8Bqd2nWFbLaq1_srUrj_JVZFDWN-HhbIwAsC6iE802j63sQabLJ6ffxBO0yFMYyUC4WSTXK_uNjDOFiMEoaE4u5D9rpaNvk-xmcXM2-ZX2KFFnfwZhd-iFMzeexSVYaI7h__YguPs9Lt_YSm7hotdz5pF6_gsXdsw9YH6X9a_WqKaNy4drrcRsZi8"/>
+<button class="absolute bottom-2 right-2 w-7 h-7 rounded-full bg-surface-container-lowest/90 backdrop-blur-md flex items-center justify-center text-on-surface shadow-sm active:scale-95">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+<p class="font-label-md text-label-md text-on-surface truncate">Kyoto Low Oak Table</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">$280.00</p>
+</div>
+<!-- Paired Item 2 -->
+<div class="bg-surface-container-lowest rounded-DEFAULT p-2.5 flex flex-col shadow-sm">
+<div class="w-full aspect-square rounded-DEFAULT overflow-hidden bg-surface-container-low mb-2 relative">
+<img alt="Spun Brass Floor Lamp" class="w-full h-full object-cover" data-alt="Minimalist spun brass and frosted glass architectural floor lamp in a serene neutral warm beige living room, warm ambient dusk light glow, contemporary product shot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADya7666UPZHrKXexHjhsUK7bV8i_cq2RVpGWDKYdyK3aCVY_yelatQK_Dzr7y2hwmyXfLoc65ptWky7Qz14_8eWNcZHMCAtTwGMHpSC8BGBT6ds1TIlsa05MfARoS4phTwzxDOY-mxXDGtnlUyYKzFTE-pSP8BRKXy81QvDECRqMYVjz8VTnR7sdYxeSjrr99przZxf5kjcMobr6gSuLyKOvqQZGnFglzBBQ54VT9Ks7xamDG48mk"/>
+<button class="absolute bottom-2 right-2 w-7 h-7 rounded-full bg-surface-container-lowest/90 backdrop-blur-md flex items-center justify-center text-on-surface shadow-sm active:scale-95">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+<p class="font-label-md text-label-md text-on-surface truncate">Aura Spun Brass Lamp</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">$195.00</p>
+</div>
+</div>
+</section>
+<!-- Sticky Bottom Pill Bar -->
+<div class="fixed bottom-3 inset-x-0 px-margin z-40 pointer-events-none">
+<div class="pointer-events-auto max-w-md mx-auto bg-surface-container-lowest/90 backdrop-blur-xl rounded-full p-2 pl-5 flex items-center justify-between shadow-[0_8px_24px_-4px_rgba(28,27,25,0.12),0_2px_6px_-1px_rgba(28,27,25,0.06)]">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-on-surface font-semibold" id="bottom-total-price">$420.00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="bottom-qty-indicator">(1 item)</span>
+</div>
+</div>
+<button class="h-12 px-6 rounded-full bg-primary text-on-primary font-label-lg text-label-lg flex items-center gap-2 shadow-md active:scale-95 transition-all hover:bg-primary-container" id="add-to-cart-btn">
+<span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+<span>Add to Bag</span>
+</button>
+</div>
+</div>
+<!-- Micro-interaction Toast -->
+<div class="fixed top-20 inset-x-0 mx-auto w-max max-w-[90%] px-4 py-2.5 rounded-full bg-inverse-surface text-inverse-on-surface font-label-md text-label-md shadow-lg flex items-center gap-2 transform -translate-y-12 opacity-0 pointer-events-none transition-all duration-300 z-50" id="toast">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed">check_circle</span>
+<span id="toast-message">Added Studio Armchair to bag</span>
+</div>
+</div>
+<script>
+  // Accordion Controller
+  function toggleAccordion(contentId, iconId) {
+    const content = document.getElementById(contentId);
+    const icon = document.getElementById(iconId);
+    if (!content || !icon) return;
+
+    const isHidden = content.classList.contains('hidden');
+    if (isHidden) {
+      content.classList.remove('hidden');
+      icon.style.transform = 'rotate(180deg)';
+    } else {
+      content.classList.add('hidden');
+      icon.style.transform = 'rotate(0deg)';
+    }
+  }
+
+  // Interactive State
+  let quantity = 1;
+  const basePrice = 420;
+
+  const qtyVal = document.getElementById('qty-val');
+  const qtyMinus = document.getElementById('qty-minus');
+  const qtyPlus = document.getElementById('qty-plus');
+  const bottomTotal = document.getElementById('bottom-total-price');
+  const bottomQty = document.getElementById('bottom-qty-indicator');
+  const toast = document.getElementById('toast');
+  const toastMessage = document.getElementById('toast-message');
+  const wishlistBtn = document.getElementById('wishlist-btn');
+  const wishlistIcon = document.getElementById('wishlist-icon');
+  const finishLabel = document.getElementById('selected-finish-name');
+  const swatchButtons = document.querySelectorAll('.swatch-btn');
+
+  function updateTotals() {
+    qtyVal.textContent = quantity;
+    const total = (basePrice * quantity).toFixed(2);
+    bottomTotal.textContent = `$${total}`;
+    bottomQty.textContent = `(${quantity} ${quantity === 1 ? 'item' : 'items'})`;
+    qtyMinus.disabled = quantity <= 1;
+  }
+
+  qtyPlus.addEventListener('click', () => {
+    quantity += 1;
+    updateTotals();
+  });
+
+  qtyMinus.addEventListener('click', () => {
+    if (quantity > 1) {
+      quantity -= 1;
+      updateTotals();
+    }
+  });
+
+  // Finish Selector Interaction
+  swatchButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      swatchButtons.forEach(b => {
+        b.classList.remove('ring-2', 'ring-primary', 'scale-105');
+        b.classList.add('opacity-85');
+        const checkIcon = b.querySelector('.material-symbols-outlined');
+        if (checkIcon) checkIcon.remove();
+      });
+
+      btn.classList.add('ring-2', 'ring-primary', 'scale-105');
+      btn.classList.remove('opacity-85');
+      
+      const check = document.createElement('span');
+      check.className = 'material-symbols-outlined text-[16px] text-on-primary';
+      check.textContent = 'check';
+      btn.firstElementChild.appendChild(check);
+
+      const finishName = btn.getAttribute('data-finish');
+      finishLabel.textContent = finishName;
+      showToast(`Selected: ${finishName}`);
+    });
+  });
+
+  // Wishlist Toggle
+  let isWishlisted = false;
+  wishlistBtn.addEventListener('click', () => {
+    isWishlisted = !isWishlisted;
+    if (isWishlisted) {
+      wishlistIcon.textContent = 'favorite';
+      wishlistIcon.style.fontVariationSettings = "'FILL' 1";
+      wishlistIcon.classList.add('text-secondary');
+      showToast('Saved to your design wishlist');
+    } else {
+      wishlistIcon.textContent = 'favorite_border';
+      wishlistIcon.style.fontVariationSettings = "'FILL' 0";
+      wishlistIcon.classList.remove('text-secondary');
+    }
+  });
+
+  // Add to Cart Interaction
+  const addToCartBtn = document.getElementById('add-to-cart-btn');
+  addToCartBtn.addEventListener('click', () => {
+    addToCartBtn.classList.add('scale-95');
+    setTimeout(() => addToCartBtn.classList.remove('scale-95'), 150);
+    showToast(`Added ${quantity} &times; Studio Armchair to bag`);
+  });
+
+  function showToast(msg) {
+    if (!toast || !toastMessage) return;
+    toastMessage.innerHTML = msg;
+    toast.classList.remove('opacity-0', '-translate-y-12', 'pointer-events-none');
+    toast.classList.add('opacity-100', 'translate-y-0');
+
+    setTimeout(() => {
+      toast.classList.add('opacity-0', '-translate-y-12', 'pointer-events-none');
+      toast.classList.remove('opacity-100', 'translate-y-0');
+    }, 2400);
+  }
+
+  updateTotals();
+</script></main></body></html>

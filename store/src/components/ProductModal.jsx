@@ -7,7 +7,11 @@ import {
   CheckCircle2, 
   Sparkles, 
   Plus, 
-  Minus 
+  Minus,
+  Heart,
+  ShieldCheck,
+  Check,
+  Share2
 } from 'lucide-react';
 
 export default function ProductModal({
@@ -20,6 +24,7 @@ export default function ProductModal({
 }) {
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
+  const [isWishlisted, setIsWishlisted] = useState(false);
   const [selectedVariant, setSelectedVariant] = useState(
     product.variants ? product.variants[0] : null
   );
@@ -41,7 +46,7 @@ export default function ProductModal({
     setTimeout(() => {
       setAdded(false);
       onClose();
-    }, 1200);
+    }, 1100);
   };
 
   const waText = encodeURIComponent(
@@ -54,185 +59,111 @@ export default function ProductModal({
   const waUrl = `https://wa.me/233240000000?text=${waText}`;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-md animate-in fade-in duration-200">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-md animate-in fade-in duration-200"
+      onClick={onClose}
+    >
       <div 
-        className="relative w-full max-w-3xl bg-white dark:bg-[#0E0E10] text-[#1A1615] dark:text-white rounded-3xl shadow-2xl border border-[#EADBCE] dark:border-white/10 overflow-hidden max-h-[92vh] flex flex-col md:flex-row"
+        className="relative w-full max-w-3xl bg-[#fbf9f5] dark:bg-[#121216] text-[#1b1c1a] dark:text-white rounded-3xl shadow-2xl border border-[#EADBCE] dark:border-white/10 overflow-hidden max-h-[92vh] flex flex-col md:flex-row"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
+        {/* Close Button matching Stitch */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/95 dark:bg-zinc-800 hover:bg-[#1A1615] text-[#1A1615] dark:text-white hover:text-[#DEB573] flex items-center justify-center shadow-md transition-colors cursor-pointer"
-          aria-label="Close modal"
+          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/90 dark:bg-zinc-800 text-[#1b1c1a] dark:text-white hover:bg-[#8d4e12] hover:text-white flex items-center justify-center shadow-md transition-colors cursor-pointer"
+          aria-label="Close formulation details"
         >
           <X className="w-5 h-5" />
         </button>
 
-        {/* Left Column: Image & Badges */}
-        <div className="md:w-1/2 relative bg-[#FAF6F0] dark:bg-zinc-950 flex flex-col justify-between p-6">
-          <div className="flex flex-col gap-1.5 self-start">
+        {/* Left: Image Canvas matching Stitch product_details.html Hero */}
+        <div className="md:w-1/2 relative bg-[#f5f3ef] dark:bg-zinc-950 flex flex-col justify-between p-6">
+          <div className="flex items-center justify-between z-10">
             {isVipMember ? (
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-[#DEB573] text-[#1A1615] shadow-xs">
-                <Sparkles className="w-3 h-3" />
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-dm font-bold bg-[#8d4e12] text-white shadow-xs">
+                <Sparkles className="w-3 h-3 text-[#ffdcc4]" />
                 <span>VIP Wholesale -20%</span>
               </span>
             ) : product.badge ? (
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-[#1A1615] dark:bg-zinc-800 text-[#DEB573] shadow-md border border-white/10">
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-dm font-bold bg-[#1b1c1a] text-[#ffdcc4] shadow-md border border-white/10">
                 <Sparkles className="w-3 h-3" />
                 {product.badge}
               </span>
-            ) : null}
-            <span className="px-3 py-0.8 rounded-full text-xs font-mono font-semibold bg-white dark:bg-zinc-900 text-[#1A1615] dark:text-zinc-200 shadow-xs w-max border border-white/10">
-              Item Code: #{selectedVariant ? selectedVariant.code : product.code}
-            </span>
+            ) : <span />}
+
+            <button
+              onClick={() => setIsWishlisted(!isWishlisted)}
+              className={`w-9 h-9 rounded-full backdrop-blur-md flex items-center justify-center shadow-xs transition-colors cursor-pointer ${
+                isWishlisted 
+                  ? 'bg-rose-50 text-rose-600 dark:bg-rose-950 dark:text-rose-400' 
+                  : 'bg-white/80 dark:bg-zinc-900 text-[#1b1c1a] dark:text-white hover:text-rose-600'
+              }`}
+            >
+              <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />
+            </button>
           </div>
 
+          {/* Product Cutout */}
           <div className="my-auto py-4 flex items-center justify-center">
             <img
               src={product.image}
               alt={product.name}
-              className="max-h-[340px] w-auto object-contain rounded-2xl shadow-lg border border-[#EADBCE] dark:border-zinc-800"
+              className="max-h-[300px] sm:max-h-[340px] w-auto object-contain rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105"
             />
           </div>
 
-          <div className="bg-[#1A1615]/85 dark:bg-zinc-900/90 backdrop-blur-md text-white p-2.5 rounded-full text-xs flex items-center justify-between px-4 border border-white/10">
-            <span className="text-[#DEB573] font-medium">Oriflame E-Catalogue</span>
-            <span className="font-semibold">Featured on Page {product.page}</span>
+          {/* Pagination & Catalogue Page Pill */}
+          <div className="bg-[#1b1c1a]/90 dark:bg-zinc-900/90 backdrop-blur-md text-white p-2.5 rounded-full text-xs flex items-center justify-between px-4 border border-white/10">
+            <span className="text-[#ffdcc4] font-dm font-medium">Oriflame Stockholm Q4</span>
+            <span className="font-dm font-semibold">Featured on Page {product.page}</span>
           </div>
         </div>
 
-        {/* Right Column: Details & Actions */}
-        <div className="md:w-1/2 p-6 sm:p-8 overflow-y-auto flex flex-col justify-between space-y-5">
+        {/* Right: Details & Architectural Specs Sheet (Stitch Pattern) */}
+        <div className="md:w-1/2 p-6 sm:p-7 overflow-y-auto flex flex-col justify-between space-y-5">
           <div className="space-y-4">
+            {/* Header Titles */}
             <div>
-              <span className="text-xs uppercase font-bold tracking-wider text-[#C48B3B] dark:text-[#DEB573]">
-                {product.category} • {product.subCategory}
-              </span>
-              <h2 className="font-serif text-2xl font-bold text-[#1A1615] dark:text-white mt-1 leading-snug">
+              <p className="text-[10px] uppercase font-dm font-bold tracking-widest text-[#7a776f] dark:text-zinc-400">
+                Atelier Series REF #{selectedVariant ? selectedVariant.code : product.code}
+              </p>
+              <h2 className="font-serif text-2xl font-bold text-[#1b1c1a] dark:text-white mt-1 leading-snug">
                 {product.name}
               </h2>
-              <p className="text-xs text-[#8C7B72] dark:text-zinc-400 mt-0.5">{product.subtitle}</p>
+              <p className="text-xs text-[#8d4e12] dark:text-[#ffdcc4] font-dm font-semibold mt-0.5">
+                {product.subtitle}
+              </p>
             </div>
 
-            {/* Rating & Volume */}
-            <div className="flex items-center justify-between text-xs py-2 border-y border-[#F5EFEB] dark:border-zinc-800">
-              <div className="flex items-center gap-1.5">
-                <div className="flex text-[#DEB573]">
-                  <Star className="w-4 h-4 fill-current" />
+            {/* Price & Tactile Quantity Stepper (Stitch product_details.html section) */}
+            <div className="bg-white dark:bg-[#1a1a20] rounded-2xl p-4 border border-[#EADBCE]/80 dark:border-white/10 shadow-xs flex items-center justify-between">
+              <div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="font-dm font-extrabold text-2xl text-[#1b1c1a] dark:text-white">
+                    {formatPrice(effectivePrice)}
+                  </span>
+                  <span className="text-xs text-[#7a776f] dark:text-zinc-400 font-dm">/ unit</span>
                 </div>
-                <span className="font-bold text-[#1A1615] dark:text-white">{product.rating}</span>
-                <span className="text-[#A8988E] dark:text-zinc-500">({product.reviewsCount} customer reviews)</span>
+                <span className="inline-block mt-1 px-2.5 py-0.5 rounded-full bg-[#ffdcc4]/60 dark:bg-[#8d4e12]/30 text-[#8d4e12] dark:text-[#ffdcc4] text-[10px] font-dm font-bold">
+                  In Stock • Cold-Chain Guaranteed
+                </span>
               </div>
-              <span className="font-semibold text-[#1A1615] dark:text-zinc-200 bg-[#FAF6F0] dark:bg-zinc-900 px-3 py-1 rounded-full border border-[#EADBCE] dark:border-zinc-800">
-                Size: {product.volume}
-              </span>
-            </div>
 
-            {/* Price */}
-            <div className="flex items-baseline gap-3">
-              <span className="text-2xl font-extrabold text-[#1A1615] dark:text-white">
-                {formatPrice(effectivePrice)}
-              </span>
-              {isVipMember ? (
-                <span className="text-xs text-[#C48B3B] dark:text-[#DEB573] font-bold">
-                  (Retail: {formatPrice(product.priceGHS)})
-                </span>
-              ) : product.originalPriceGHS ? (
-                <span className="text-sm text-[#A8988E] dark:text-zinc-500 line-through">
-                  {formatPrice(product.originalPriceGHS)}
-                </span>
-              ) : null}
-            </div>
-
-            {/* Description */}
-            <p className="text-xs sm:text-sm text-[#6E5D53] dark:text-zinc-300 leading-relaxed">
-              {product.description}
-            </p>
-
-            {/* Shade Selection if available */}
-            {product.variants && (
-              <div className="p-3 bg-[#FAF6F0] dark:bg-zinc-900 border border-[#EADBCE] dark:border-zinc-800 rounded-2xl space-y-2">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#C48B3B] dark:text-[#DEB573] block">
-                  Select Shade:
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {product.variants.map((v) => (
-                    <button
-                      key={v.code}
-                      onClick={() => setSelectedVariant(v)}
-                      className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs border transition-all cursor-pointer ${
-                        selectedVariant?.code === v.code
-                          ? 'border-[#1A1615] dark:border-[#DEB573] bg-white dark:bg-zinc-800 font-bold shadow-xs ring-1 ring-[#DEB573]'
-                          : 'border-[#EADBCE] dark:border-zinc-700 bg-white/60 dark:bg-zinc-800/60 text-[#6E5D53] dark:text-zinc-300'
-                      }`}
-                    >
-                      <span 
-                        className="w-3.5 h-3.5 rounded-full border border-black/20" 
-                        style={{ backgroundColor: v.hex }} 
-                      />
-                      <span>{v.name}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Scent Notes or Key Benefits */}
-            {product.olfactoryPyramid && (
-              <div className="bg-[#FFFDF9] dark:bg-zinc-900 border border-[#DEB573]/40 rounded-2xl p-3.5 space-y-2">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#C48B3B] dark:text-[#DEB573] block">
-                  The Olfactory Pyramid ({product.perfumer}):
-                </span>
-                <div className="text-xs space-y-1 dark:text-zinc-300">
-                  <div>
-                    <span className="font-semibold text-[#8C7B72] dark:text-[#DEB573]">Top: </span>
-                    <span>{product.olfactoryPyramid.top.join(', ')}</span>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-[#8C7B72] dark:text-[#DEB573]">Heart: </span>
-                    <span>{product.olfactoryPyramid.heart.join(', ')}</span>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-[#8C7B72] dark:text-[#DEB573]">Base: </span>
-                    <span>{product.olfactoryPyramid.base.join(', ')}</span>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {product.benefits && (
-              <div className="space-y-1.5">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#8C7B72] dark:text-zinc-400">
-                  Key Highlights:
-                </span>
-                <ul className="space-y-1">
-                  {product.benefits.map((benefit) => (
-                    <li key={benefit} className="text-xs text-[#1A1615] dark:text-zinc-200 flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
-                      <span>{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-
-          {/* Quantity & Actions */}
-          <div className="pt-4 border-t border-[#F5EFEB] dark:border-zinc-800 space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-[#1A1615] dark:text-zinc-300">Quantity</span>
-              <div className="flex items-center border border-[#EADBCE] dark:border-zinc-800 rounded-full bg-[#FAF6F0] dark:bg-zinc-900 overflow-hidden">
+              {/* Tactile Stepper Pill */}
+              <div className="flex items-center bg-[#f5f3ef] dark:bg-zinc-800 rounded-full p-1 border border-[#EADBCE]/60 dark:border-white/5">
                 <button
                   onClick={() => setQty(Math.max(1, qty - 1))}
-                  className="px-3 py-1.5 hover:bg-white dark:hover:bg-zinc-800 text-[#6E5D53] dark:text-zinc-300 transition-colors cursor-pointer"
+                  className="w-8 h-8 rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center text-[#1b1c1a] dark:text-white shadow-xs active:scale-90 transition-transform cursor-pointer"
                   aria-label="Decrease quantity"
                 >
                   <Minus className="w-3.5 h-3.5" />
                 </button>
-                <span className="px-4 text-xs font-bold text-[#1A1615] dark:text-white">{qty}</span>
+                <span className="w-8 text-center font-dm font-bold text-xs select-none">
+                  {qty}
+                </span>
                 <button
                   onClick={() => setQty(qty + 1)}
-                  className="px-3 py-1.5 hover:bg-white dark:hover:bg-zinc-800 text-[#6E5D53] dark:text-zinc-300 transition-colors cursor-pointer"
+                  className="w-8 h-8 rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center text-[#1b1c1a] dark:text-white shadow-xs active:scale-90 transition-transform cursor-pointer"
                   aria-label="Increase quantity"
                 >
                   <Plus className="w-3.5 h-3.5" />
@@ -240,35 +171,95 @@ export default function ProductModal({
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <button
-                onClick={handleAddToCart}
-                disabled={added}
-                className="w-full py-3.5 rounded-full bg-[#1A1615] dark:bg-[#DEB573] text-white dark:text-[#1A1615] hover:bg-[#26201E] dark:hover:bg-[#F5DFC2] text-xs font-bold transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
-              >
-                {added ? (
-                  <>
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 dark:text-emerald-800" />
-                    <span>Added to Bag!</span>
-                  </>
-                ) : (
-                  <>
-                    <ShoppingBag className="w-4 h-4 text-[#DEB573] dark:text-[#1A1615]" />
-                    <span>Add to Bag ({formattedTotalPrice})</span>
-                  </>
-                )}
-              </button>
+            {/* Shade / Finish Selector */}
+            {product.variants && (
+              <div className="p-3.5 bg-white dark:bg-[#1a1a20] border border-[#EADBCE]/80 dark:border-white/10 rounded-2xl space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-dm font-bold uppercase tracking-wider text-[#7a776f] dark:text-zinc-400">
+                    Finish & Texture:
+                  </span>
+                  <span className="text-xs font-dm font-bold text-[#8d4e12] dark:text-[#ffdcc4]">
+                    {selectedVariant ? selectedVariant.name : 'Standard'}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {product.variants.map((v) => (
+                    <button
+                      key={v.code}
+                      onClick={() => setSelectedVariant(v)}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-dm transition-all cursor-pointer ${
+                        selectedVariant?.code === v.code
+                          ? 'bg-[#1b1c1a] dark:bg-white text-white dark:text-[#1b1c1a] shadow-xs'
+                          : 'bg-[#f5f3ef] dark:bg-zinc-800 text-[#494740] dark:text-zinc-300 hover:bg-[#eae8e4]'
+                      }`}
+                    >
+                      <span className="w-3 h-3 rounded-full border border-white/20" style={{ backgroundColor: v.hex }} />
+                      <span>{v.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
-              <a
-                href={waUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-3.5 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white text-xs font-bold transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <Phone className="w-4 h-4" />
-                <span>Order via WhatsApp</span>
-              </a>
+            {/* Architectural Specs Sheet (Stitch product_details.html) */}
+            <div className="bg-[#f5f3ef] dark:bg-[#1a1a20] rounded-2xl p-4 border border-[#EADBCE]/70 dark:border-white/5 space-y-2">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs font-dm font-bold text-[#1b1c1a] dark:text-white">
+                  Architectural Formulation Specs
+                </span>
+                <span className="text-[10px] font-mono text-[#7a776f] dark:text-zinc-400">
+                  ISO-22716
+                </span>
+              </div>
+              <div className="space-y-1.5 text-xs font-dm">
+                <div className="flex justify-between py-1 bg-white/70 dark:bg-zinc-900/60 px-3 rounded-xl">
+                  <span className="text-[#7a776f] dark:text-zinc-400">Active Complex</span>
+                  <span className="font-semibold text-[#1b1c1a] dark:text-white">Bio-Peptides & Arctic Botanical</span>
+                </div>
+                <div className="flex justify-between py-1 bg-white/70 dark:bg-zinc-900/60 px-3 rounded-xl">
+                  <span className="text-[#7a776f] dark:text-zinc-400">Net Volume</span>
+                  <span className="font-semibold text-[#1b1c1a] dark:text-white">{product.volume}</span>
+                </div>
+                <div className="flex justify-between py-1 bg-white/70 dark:bg-zinc-900/60 px-3 rounded-xl">
+                  <span className="text-[#7a776f] dark:text-zinc-400">Origin Atelier</span>
+                  <span className="font-semibold text-[#1b1c1a] dark:text-white">Stockholm, Sweden</span>
+                </div>
+              </div>
             </div>
+          </div>
+
+          {/* Sticky Bottom Actions */}
+          <div className="pt-4 border-t border-[#EADBCE]/80 dark:border-white/10 space-y-2.5">
+            <button
+              onClick={handleAddToCart}
+              className={`w-full py-3.5 rounded-full font-dm font-bold text-xs transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer active:scale-95 ${
+                added
+                  ? 'bg-emerald-600 text-white'
+                  : 'bg-[#1b1c1a] dark:bg-white text-white dark:text-[#1b1c1a] hover:bg-[#8d4e12] dark:hover:bg-[#ffdcc4]'
+              }`}
+            >
+              {added ? (
+                <>
+                  <Check className="w-4 h-4" />
+                  <span>Added to Vanity Bag!</span>
+                </>
+              ) : (
+                <>
+                  <ShoppingBag className="w-4 h-4 text-[#ffdcc4] dark:text-[#8d4e12]" />
+                  <span>Add to Bag • {formattedTotalPrice}</span>
+                </>
+              )}
+            </button>
+
+            <a
+              href={waUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-2.5 rounded-full border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white text-xs font-dm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              <span>Instant WhatsApp Concierge Order</span>
+            </a>
           </div>
         </div>
       </div>
